@@ -1,5 +1,5 @@
 import React from "react"
-import WidgetCard from "../components/widget/Card"
+import Widget from "../components/widget/Widget"
 
 const MainPage = () => {
     return (
@@ -7,17 +7,23 @@ const MainPage = () => {
             <div className="container mt-3">
                 <div className="row align-items-start">
                     <div className="col mb-3">
-                        <WidgetCard />
+                        <Widget type="card" />
                     </div>
                     <div className="col mb-3">
-                        <WidgetCard />
+                        <Widget type="card" />
                     </div>
                     <div className="col mb-3">
-                        <WidgetCard />
+                        <Widget type="card" />
                     </div>
                 </div>
             </div>
-            <div className="container"></div>
+            <div className="container">
+                <div className="row">
+                    <div className="col">
+                        <Widget type="analytics" />
+                    </div>
+                </div>
+            </div>
         </>
     )
 }
