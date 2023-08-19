@@ -1,7 +1,11 @@
-import React from "react"
-import Widget from "../components/widget/Widget"
+import React, { useEffect } from "react"
+import Widget from "../components/Widget"
+import API from "../api"
 
 const MainPage = () => {
+    useEffect(() => {
+        API.accounts.fetchAll().then((data) => console.log(data))
+    }, [])
     return (
         <>
             <div className="container mt-3">

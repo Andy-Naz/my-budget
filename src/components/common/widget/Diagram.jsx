@@ -1,5 +1,5 @@
 import React from "react"
-import diagram from "../../assets/images/diagram.jpg"
+import diagram from "../../../assets/images/diagram.jpg"
 
 const Diagram = () => {
     return (

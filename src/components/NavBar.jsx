@@ -31,6 +31,12 @@ const NavBar = () => {
                                 История
                             </NavLink>
                         </li>
+                        <li className="nav-item">
+                            <NavLink to="transaction" className="nav-link" aria-current="page">
+                                Транзакция
+                            </NavLink>
+                        </li>
+
                         <li className="nav-item dropdown">
                             <a
                                 className="nav-link dropdown-toggle"
