@@ -7,3 +7,20 @@
 a {
     text-decoration: none;
 }
+
+p {
+    padding: 0;
+    margin: 0;
+}
+
+.text-transaction {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.transaction:hover {
+    background-color: beige;
+}

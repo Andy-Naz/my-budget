@@ -10,6 +10,14 @@ const fetchAll = () =>
         }, 1000)
     })
 
+const getCategoryById = (id) =>
+    new Promise((resolve) => {
+        window.setTimeout(function () {
+            resolve(categories.find((category) => category._id === id))
+        }, 500)
+    })
+
 export default {
     fetchAll,
+    getCategoryById,
 }

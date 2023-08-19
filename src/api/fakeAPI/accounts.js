@@ -11,6 +11,14 @@ const fetchAll = () =>
         }, 1000)
     })
 
+const getAccountById = (id) =>
+    new Promise((resolve) => {
+        window.setTimeout(function () {
+            resolve(accounts.find((account) => account._id === id))
+        }, 500)
+    })
+
 export default {
     fetchAll,
+    getAccountById,
 }
