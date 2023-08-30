@@ -1,0 +1,60 @@
+[
+    {
+        "_id": "44d35f12acd1",
+        "account": "3fc1944fa486",
+        "category": "ec11fd44684a",
+        "amount": 50000,
+        "comment": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, suscipit?"
+    },
+    {
+        "_id": "997dfe48042c",
+        "account": "c93d25ed8e5a",
+        "category": "ec11fd44684a",
+        "amount": 20000,
+        "comment": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur quisquam ullam assumenda numquam inventore dolore asperiores rem, repellat iusto optio"
+    },
+    {
+        "_id": "1ac410d88dea",
+        "account": "4525e1012ee0",
+        "category": "ec11fd44684a",
+        "amount": 10000,
+        "comment": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur quisquam ullam assumenda"
+    },
+    { "_id": "b85b81b8aaf6", "account": "3fc1944fa486", "category": "5310f6f217c1", "amount": 200000, "comment": "" },
+    {
+        "_id": "02ce627be325",
+        "account": "c93d25ed8e5a",
+        "category": "5310f6f217c1",
+        "amount": 5000,
+        "comment": "Lorem ipsum"
+    },
+    {
+        "_id": "70ca70afb4e8",
+        "account": "4525e1012ee0",
+        "category": "ec11fd44684a",
+        "amount": 3000,
+        "comment": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur quisquam ullam assumenda numquam inventore dolore asperiores rem"
+    },
+    {
+        "_id": "fde38c80c3d9",
+        "account": "3fc1944fa486",
+        "category": "5310f6f217c1",
+        "amount": 700,
+        "comment": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur quisquam ullam assumenda numquam inventore dolore asperiores rem"
+    },
+    { "_id": "004fba01ca89", "account": "c93d25ed8e5a", "category": "5310f6f217c1", "amount": 23000, "comment": "" },
+    {
+        "_id": "f86adb464e45",
+        "account": "4525e1012ee0",
+        "category": "ec11fd44684a",
+        "amount": 37000,
+        "comment": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur quisquam ullam"
+    },
+    {
+        "_id": "7a7abb0602bf",
+        "account": "c93d25ed8e5a",
+        "category": "5310f6f217c1",
+        "amount": 68000,
+        "comment": "Lorem ipsum dolor sit amet consectetur"
+    }
+]
