@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import API from "../../../api"
 
-const Transaction = ({ data }) => {
+const Transaction = ({ data }) => {  
     const [accountName, setAccountName] = useState()
     const [categoryName, setCategoryName] = useState()
 

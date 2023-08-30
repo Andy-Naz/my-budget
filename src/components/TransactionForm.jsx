@@ -3,35 +3,42 @@ import { validator } from "../utils/validator"
 import SelectField from "./common/form/selectField"
 import TextField from "./common/form/textField"
 import TextAreaField from "./common/form/textAreaField"
-import API from "../api"
-import { useSelector } from "react-redux"
+// import API from "../api"
+// import { useSelector } from "react-redux"
 import { getAccounts } from "../store/accounts"
 // import CheckBoxField from "../common/form/checkBoxField"
-// import { useDispatch, useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { getCategories } from "../store/categories"
+import { createTransaction } from "../store/transactions"
 // import { getQualities } from "../../store/qualities"
 // import { getProfessions } from "../../store/professions"
 // import { singUp } from "../../store/users"
 
 const TransactionForm = () => {
-    const acc = useSelector(getAccounts())
-    console.log(acc)
-    // const dispatch = useDispatch()
-    const [accounts, setAccounts] = useState([])
-    const [categories, setCategories] = useState([])
+    const dispatch = useDispatch()
 
-    useEffect(() => {
-        API.accounts.fetchAll().then((data) => {
-            const accountsList = data.map((account) => ({ label: account.name, value: account._id }))
-            setAccounts(accountsList)
-            // console.log(accountsList)
-        })
+    const accounts = useSelector(getAccounts())
+    const accountsList = accounts.map((account) => ({ label: account.name, value: account._id }))
 
-        API.categories.fetchAll().then((data) => {
-            const categoriesList = data.map((category) => ({ label: category.name, value: category._id }))
-            setCategories(categoriesList)
-            // console.log(categoriesList)
-        })
-    }, [])
+    const categories = useSelector(getCategories())
+    const categoriesList = categories.map((category) => ({ label: category.name, value: category._id }))
+
+    // const [accounts, setAccounts] = useState([])
+    // const [categories, setCategories] = useState([])
+
+    // useEffect(() => {
+    //     API.accounts.fetchAll().then((data) => {
+    //         const accountsList = data.map((account) => ({ label: account.name, value: account._id }))
+    //         setAccounts(accountsList)
+    //         // console.log(accountsList)
+    //     })
+
+    //     API.categories.fetchAll().then((data) => {
+    //         const categoriesList = data.map((category) => ({ label: category.name, value: category._id }))
+    //         setCategories(categoriesList)
+    //         // console.log(categoriesList)
+    //     })
+    // }, [])
 
     // useEffect(() => {
     //     console.log("accounts", accounts), console.log("categories", categories)
@@ -73,6 +80,9 @@ const TransactionForm = () => {
             isRequired: {
                 message: "Необходимо указать числовое значение",
             },
+            isPositiveNumber: {
+                message: "Число должно быть положительным",
+            },
         },
     }
 
@@ -92,9 +102,10 @@ const TransactionForm = () => {
         e.preventDefault()
         const isValid = validate()
         if (!isValid) return
-        // const newData = { ...data, qualities: data.qualities.map((q) => q.value) }
-        console.log(data)
+        const newData = { ...data, amount: Number(data.amount) }
+        console.log(newData)
         // dispatch(singUp(newData))
+        dispatch(createTransaction(newData))
     }
 
     if (accounts.length > 0 && categories.length > 0) {
@@ -107,7 +118,7 @@ const TransactionForm = () => {
                             <SelectField
                                 label="Счет"
                                 defaultOption="Выбрать из списка..."
-                                options={accounts}
+                                options={accountsList}
                                 name="account"
                                 onChange={handleChange}
                                 value={data.account}
@@ -116,7 +127,7 @@ const TransactionForm = () => {
                             <SelectField
                                 label="Категория"
                                 defaultOption="Выбрать из списка..."
-                                options={categories}
+                                options={categoriesList}
                                 name="category"
                                 onChange={handleChange}
                                 value={data.category}

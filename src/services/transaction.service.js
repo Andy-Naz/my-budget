@@ -3,8 +3,12 @@ import httpService from "./http.service"
 const transactionEndpoint = "transaction/"
 
 const transactionService = {
-    get: async () => {
+    getTransaction: async () => {
         const { data } = await httpService.get(transactionEndpoint)
+        return data
+    },
+    createTransaction: async (payload) => {
+        const { data } = await httpService.put(transactionEndpoint + payload._id, payload)
         return data
     },
 }

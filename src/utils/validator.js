@@ -26,6 +26,10 @@ export function validator(data, config) {
                 statusValidate = !digitRegExp.test(data)
                 break
             }
+            case "isPositiveNumber": {
+                statusValidate = data <= 0
+                break
+            }
             case "min":
                 statusValidate = data.length < config.value
                 break
