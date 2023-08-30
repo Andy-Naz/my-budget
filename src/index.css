@@ -24,3 +24,12 @@ p {
 .transaction:hover {
     background-color: beige;
 }
+
+.dropdown-toggle::after {
+    display: none !important;
+}
+
+/* .dropend:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+} */
