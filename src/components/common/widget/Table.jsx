@@ -1,31 +1,26 @@
 import React from "react"
 
-const Table = () => {
+const Table = ({ data }) => {
+    console.log(data)
     return (
         <table className="table table-hover">
             <thead>
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Наименование</th>
-                    <th scope="col">Сумма</th>
+                    <th scope="col" className="d-flex justify-content-end">
+                        Сумма
+                    </th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Операционный</td>
-                    <td>1 000 000</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Инвестиции</td>
-                    <td>500 000</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Кредиты</td>
-                    <td>200 000</td>
-                </tr>
+                {data.map((item, index) => (
+                    <tr key={item._id}>
+                        <th scope="row">{index + 1}</th>
+                        <td>{item.name}</td>
+                        <td className="d-flex justify-content-end">{item.value.toLocaleString()}</td>
+                    </tr>
+                ))}
             </tbody>
         </table>
     )

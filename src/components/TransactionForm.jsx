@@ -4,6 +4,8 @@ import SelectField from "./common/form/selectField"
 import TextField from "./common/form/textField"
 import TextAreaField from "./common/form/textAreaField"
 import API from "../api"
+import { useSelector } from "react-redux"
+import { getAccounts } from "../store/accounts"
 // import CheckBoxField from "../common/form/checkBoxField"
 // import { useDispatch, useSelector } from "react-redux"
 // import { getQualities } from "../../store/qualities"
@@ -11,6 +13,8 @@ import API from "../api"
 // import { singUp } from "../../store/users"
 
 const TransactionForm = () => {
+    const acc = useSelector(getAccounts())
+    console.log(acc)
     // const dispatch = useDispatch()
     const [accounts, setAccounts] = useState([])
     const [categories, setCategories] = useState([])
@@ -29,9 +33,9 @@ const TransactionForm = () => {
         })
     }, [])
 
-    useEffect(() => {
-        console.log("accounts", accounts), console.log("categories", categories)
-    }, [accounts])
+    // useEffect(() => {
+    //     console.log("accounts", accounts), console.log("categories", categories)
+    // }, [accounts])
 
     const [data, setData] = useState({
         account: "",
@@ -130,7 +134,7 @@ const TransactionForm = () => {
                                 value={data.comment || ""}
                                 onChange={handleChange}
                                 name="comment"
-                                label="Сообщение"
+                                label="Комментарий"
                                 error={errors.comment}
                             />
 

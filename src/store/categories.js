@@ -4,7 +4,7 @@ import categoryService from "../services/category.service"
 const categoriesSlice = createSlice({
     name: "categories",
     initialState: {
-        entities: null,
+        entities: [],
         isLoading: true,
         error: null,
     },

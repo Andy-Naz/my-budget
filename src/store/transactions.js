@@ -4,7 +4,7 @@ import transactionService from "../services/transaction.service"
 const transactionsSlice = createSlice({
     name: "transactions",
     initialState: {
-        entities: null,
+        entities: [],
         isLoading: true,
         error: null,
     },

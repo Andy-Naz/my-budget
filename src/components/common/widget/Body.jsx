@@ -2,9 +2,9 @@ import React from "react"
 import Table from "./Table"
 import Diagram from "./Diagram"
 
-const Body = ({ type }) => {
+const Body = ({ type, data }) => {
     if (type === "card") {
-        return <Table />
+        return <Table data={data}/>
     }
     return <Diagram />
 }
