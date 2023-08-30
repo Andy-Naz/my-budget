@@ -16,7 +16,7 @@ const HistoryFilter = () => {
             </button>
             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <li>
-                    <div class="btn-group dropend w-100">
+                    <div className="btn-group dropend w-100">
                         <button
                             type="button"
                             className="btn dropdown-item dropdown-toggle"
@@ -45,7 +45,7 @@ const HistoryFilter = () => {
                     </div>
                 </li>
                 <li>
-                    <div class="btn-group dropend w-100">
+                    <div className="btn-group dropend w-100">
                         <button
                             type="button"
                             className="btn dropdown-item dropdown-toggle"
@@ -74,7 +74,7 @@ const HistoryFilter = () => {
                     </div>
                 </li>
                 <li>
-                    <div class="btn-group dropend w-100">
+                    <div className="btn-group dropend w-100">
                         <button
                             type="button"
                             className="btn dropdown-item dropdown-toggle"

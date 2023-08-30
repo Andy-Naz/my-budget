@@ -4,9 +4,6 @@ import API from "../api"
 import useMockData from "../utils/mockData"
 
 const MainPage = () => {
-    useEffect(() => {
-        API.accounts.fetchAll().then((data) => console.log(data))
-    }, [])
     const { error, initialize } = useMockData()
     const handleClick = () => {
         initialize()
