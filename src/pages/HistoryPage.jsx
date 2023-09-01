@@ -1,9 +1,16 @@
 import React from "react"
-import TransactionList from "../components/TransactionList"
+import TransactionList from "../components/ui/transaction/TransactionList"
 import HistoryFilter from "../components/ui/HistoryFilter"
 import { Link } from "react-router-dom"
+import { useDispatch } from "react-redux"
+import { removeTransaction } from "../store/transactions"
 
 const HistoryPage = () => {
+    const dispatch = useDispatch()
+
+    const handleRemoveTransaction = (id) => {
+        dispatch(removeTransaction(id))
+    }
     return (
         <>
             <div className="container mt-3">
@@ -25,7 +32,7 @@ const HistoryPage = () => {
                         </Link>
                     </div>
                 </div>
-                <TransactionList />
+                <TransactionList onRemove={handleRemoveTransaction} />
             </div>
         </>
     )

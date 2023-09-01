@@ -11,5 +11,9 @@ const transactionService = {
         const { data } = await httpService.put(transactionEndpoint + payload._id, payload)
         return data
     },
+    removeTransaction: async (transactionId) => {
+        const { data } = await httpService.delete(transactionEndpoint + transactionId)
+        return data
+    }
 }
 export default transactionService

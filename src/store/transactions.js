@@ -24,6 +24,9 @@ const transactionsSlice = createSlice({
         transactionCreated: (state, action) => {
             state.entities.push(action.payload)
         },
+        transactionRemoved: (state, action) => {
+            state.entities = state.entities.filter((transaction) => transaction._id !== action.payload)
+        },
     },
 })
 
@@ -32,7 +35,13 @@ const transactionCreateFailed = createAction("transactions/transactionCreateFail
 const transactionRemoveFailed = createAction("transactions/transactionRemoveFailed")
 
 const { reducer: transactionsReducer, actions } = transactionsSlice
-const { transactionsRequested, transactionsReceived, transactionsRequestFailed, transactionCreated } = actions
+const {
+    transactionsRequested,
+    transactionsReceived,
+    transactionsRequestFailed,
+    transactionCreated,
+    transactionRemoved,
+} = actions
 
 export const loadTransactionsList = () => async (dispatch) => {
     dispatch(transactionsRequested())
@@ -60,16 +69,16 @@ export const createTransaction = (data) => async (dispatch) => {
     }
 }
 
-// export const removeTransaction = (id) => async (dispatch) => {
-//     try {
-//         const { content } = await transactionService.removeTransaction(id)
-//         if (content === null) {
-//             dispatch(transactionRemoved(id))
-//         }
-//     } catch (error) {
-//         dispatch(transactionRemoveFailed(error.message))
-//     }
-// }
+export const removeTransaction = (id) => async (dispatch) => {
+    try {
+        const { content } = await transactionService.removeTransaction(id)
+        if (content === null) {
+            dispatch(transactionRemoved(id))
+        }
+    } catch (error) {
+        dispatch(transactionRemoveFailed(error.message))
+    }
+}
 
 export const getTransactions = () => (state) => state.transactions.entities
 export const getTransactionsLoadingStatus = () => (state) => state.transactions.isLoading

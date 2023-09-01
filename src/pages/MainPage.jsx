@@ -1,5 +1,5 @@
 import React from "react"
-import Widget from "../components/Widget"
+import Widget from "../components/ui/Widget"
 import useMockData from "../utils/mockData"
 import { useSelector } from "react-redux"
 import { getAccounts } from "../store/accounts"
@@ -17,7 +17,7 @@ const MainPage = () => {
     const categories = useSelector(getCategories())
     const transactions = useSelector(getTransactions())
 
-    if (accounts.length > 0 && transactions.length > 0) {
+    if (accounts.length > 0 && categories.length > 0) {
         const calculateAccounts = calculate(transactions, accounts, categories)
         const widgetTitles = ["Счета", "Доходы", "Расходы"]
 

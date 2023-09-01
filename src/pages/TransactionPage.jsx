@@ -1,5 +1,5 @@
 import React from "react"
-import TransactionForm from "../components/TransactionForm"
+import TransactionForm from "../components/ui/transaction/TransactionForm"
 
 const TransactionPage = () => {
     return (

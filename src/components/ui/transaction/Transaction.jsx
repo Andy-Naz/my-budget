@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from "react"
-import API from "../../../api"
+import React from "react"
+import { useSelector } from "react-redux"
+import { getAccounts } from "../../../store/accounts"
+import { getCategories } from "../../../store/categories"
 
-const Transaction = ({ data }) => {  
-    const [accountName, setAccountName] = useState()
-    const [categoryName, setCategoryName] = useState()
+const Transaction = ({ data, onRemove }) => {
+    const accounts = useSelector(getAccounts())
+    const categories = useSelector(getCategories())
 
-    useEffect(() => {
-        API.accounts.getAccountById(data.account).then((data) => setAccountName(data.name))
-        API.categories.getCategoryById(data.category).then((data) => setCategoryName(data.name))
-    }, [])
+    const account = accounts.find((account) => account._id === data.account)
+    const accountName = account.name
+    const category = categories.find((category) => category._id === data.category)
+    const categoryName = category.name
 
     if (accountName && categoryName) {
         return (
@@ -33,7 +35,11 @@ const Transaction = ({ data }) => {
                                     <button type="button" className="btn btn-outline-success ms-1">
                                         <i className="bi bi-pencil-square"></i>
                                     </button>
-                                    <button type="button" className="btn btn-outline-danger ms-1">
+                                    <button
+                                        type="button"
+                                        className="btn btn-outline-danger ms-1"
+                                        onClick={() => onRemove(data._id)}
+                                    >
                                         <i className="bi bi-archive-fill"></i>
                                     </button>
                                 </div>

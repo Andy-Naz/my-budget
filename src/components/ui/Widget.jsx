@@ -1,6 +1,6 @@
 import React from "react"
-import Title from "./common/widget/Title"
-import Body from "./common/widget/Body"
+import Title from "../common/widget/Title"
+import Body from "../common/widget/Body"
 
 const Widget = ({ type, title, data }) => {
     console.log(title)
@@ -23,7 +23,6 @@ const Widget = ({ type, title, data }) => {
     }
 
     const newData = transformData(data, title)
-    console.log("newData", newData)
 
     return (
         <>
