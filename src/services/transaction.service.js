@@ -14,6 +14,10 @@ const transactionService = {
     removeTransaction: async (transactionId) => {
         const { data } = await httpService.delete(transactionEndpoint + transactionId)
         return data
+    },
+    updateTransaction: async (payload, transactionId) => {
+        const { data } = await httpService.patch(transactionEndpoint + transactionId, payload)
+        return data
     }
 }
 export default transactionService

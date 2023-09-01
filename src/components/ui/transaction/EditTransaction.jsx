@@ -3,27 +3,34 @@ import { validator } from "../../../utils/validator"
 import SelectField from "../../common/form/SelectField"
 import TextField from "../../common/form/TextField"
 import TextAreaField from "../../common/form/TextAreaField"
-import { getAccounts } from "../../../store/accounts"
+import { getAccounts, getAccountsLoadingStatus } from "../../../store/accounts"
 import { useDispatch, useSelector } from "react-redux"
-import { getCategories } from "../../../store/categories"
-import { createTransaction } from "../../../store/transactions"
+import { getCategories, getCategoriesLoadingStatus } from "../../../store/categories"
+import { getTransactionById, updateTransaction } from "../../../store/transactions"
+import { useParams } from "react-router-dom"
 
-const TransactionForm = () => {
+const EditTransaction = () => {
+    const { transactionId } = useParams()
     const dispatch = useDispatch()
 
     const accounts = useSelector(getAccounts())
     const accountsList = accounts.map((account) => ({ label: account.name, value: account._id }))
+    const accountsLoading = useSelector(getAccountsLoadingStatus())
 
     const categories = useSelector(getCategories())
     const categoriesList = categories.map((category) => ({ label: category.name, value: category._id }))
+    const categoriesLoading = useSelector(getCategoriesLoadingStatus())
 
-    const [data, setData] = useState({
-        account: "",
-        category: "",
-        amount: "",
-        comment: "",
-    })
+    const currentTransaction = useSelector(getTransactionById(transactionId))
+
+    const [data, setData] = useState()
     const [errors, setErrors] = useState({})
+
+    useEffect(() => {
+        if (!accountsLoading && !categoriesLoading && !data) {
+            setData({ ...currentTransaction })
+        }
+    }, [accountsLoading, categoriesLoading, data])
 
     const handleChange = (target) => {
         setData((prevState) => ({
@@ -65,10 +72,10 @@ const TransactionForm = () => {
 
     const isValid = Object.keys(errors).length === 0
 
-    const clearForm = () => {
-        setData({ account: "", category: "", amount: "", comment: "" })
-        setErrors({})
-    }
+    // const clearForm = () => {
+    //     setData({ account: "", category: "", amount: "", comment: "" })
+    //     setErrors({})
+    // }
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -76,8 +83,8 @@ const TransactionForm = () => {
         if (!isValid) return
         const newData = { ...data, amount: Number(data.amount) }
         console.log(newData)
-        dispatch(createTransaction(newData))
-        clearForm()
+        dispatch(updateTransaction(newData, transactionId))
+        // clearForm()
     }
 
     if (accounts.length > 0 && categories.length > 0) {
@@ -133,4 +140,4 @@ const TransactionForm = () => {
     return "Loading..."
 }
 
-export default TransactionForm
+export default EditTransaction

@@ -27,12 +27,18 @@ const transactionsSlice = createSlice({
         transactionRemoved: (state, action) => {
             state.entities = state.entities.filter((transaction) => transaction._id !== action.payload)
         },
+        transactionUpdated: (state, action) => {
+            state.entities[state.entities.findIndex((transaction) => transaction._id === action.payload._id)] =
+                action.payload
+        },
     },
 })
 
 const transactionCreateRequested = createAction("transactions/transactionCreateRequested")
 const transactionCreateFailed = createAction("transactions/transactionCreateFailed")
 const transactionRemoveFailed = createAction("transactions/transactionRemoveFailed")
+const transactionUpdateRequested = createAction("transactions/transactionUpdateRequested")
+const transactionUpdateFailed = createAction("transactions/transactionUpdateFailed")
 
 const { reducer: transactionsReducer, actions } = transactionsSlice
 const {
@@ -41,6 +47,7 @@ const {
     transactionsRequestFailed,
     transactionCreated,
     transactionRemoved,
+    transactionUpdated,
 } = actions
 
 export const loadTransactionsList = () => async (dispatch) => {
@@ -80,7 +87,25 @@ export const removeTransaction = (id) => async (dispatch) => {
     }
 }
 
+export function updateTransaction(payload, transactionId) {
+    return async function (dispatch) {
+        dispatch(transactionUpdateRequested())
+        try {
+            const { content } = await transactionService.update(payload, transactionId)
+            dispatch(transactionUpdated(content))
+            // history.push(`/transactions/${content._id}`)
+        } catch (error) {
+            dispatch(transactionUpdateFailed(error.message))
+        }
+    }
+}
+
 export const getTransactions = () => (state) => state.transactions.entities
 export const getTransactionsLoadingStatus = () => (state) => state.transactions.isLoading
+export const getTransactionById = (transactionId) => (state) => {
+    if (state.transactions.entities) {
+        return state.transactions.entities.find((u) => u._id === transactionId)
+    }
+}
 
 export default transactionsReducer

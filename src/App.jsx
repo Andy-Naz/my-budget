@@ -14,6 +14,7 @@ function App() {
                     <Route path="/" element={<MainPage />} />
                     <Route path="history" element={<HistoryPage />} />
                     <Route path="transaction" element={<TransactionPage />} />
+                    {/* <Route path="transactionedit" element={<EditTransaction />} /> */}
                     <Route path="*" element={<Navigate to="/" />} />
                 </Routes>
             </AppLoader>
