@@ -91,9 +91,8 @@ export function updateTransaction(payload, transactionId) {
     return async function (dispatch) {
         dispatch(transactionUpdateRequested())
         try {
-            const { content } = await transactionService.update(payload, transactionId)
+            const { content } = await transactionService.updateTransaction(payload, transactionId)
             dispatch(transactionUpdated(content))
-            // history.push(`/transactions/${content._id}`)
         } catch (error) {
             dispatch(transactionUpdateFailed(error.message))
         }
