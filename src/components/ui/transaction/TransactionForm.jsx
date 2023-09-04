@@ -7,9 +7,11 @@ import { getAccounts, getAccountsLoadingStatus } from "../../../store/accounts"
 import { useDispatch, useSelector } from "react-redux"
 import { getCategories, getCategoriesLoadingStatus } from "../../../store/categories"
 import { createTransaction } from "../../../store/transactions"
+import { useNavigate } from "react-router-dom"
 
 const TransactionForm = () => {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const accounts = useSelector(getAccounts())
     const accountsLoading = useSelector(getAccountsLoadingStatus())
@@ -65,10 +67,10 @@ const TransactionForm = () => {
 
     const isValid = Object.keys(errors).length === 0
 
-    const clearForm = () => {
-        setData({ account: "", category: "", amount: "", comment: "" })
-        setErrors({})
-    }
+    // const clearForm = () => {
+    //     setData({ account: "", category: "", amount: "", comment: "" })
+    //     setErrors({})
+    // }
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -77,7 +79,8 @@ const TransactionForm = () => {
         const newData = { ...data, amount: Number(data.amount) }
         console.log(newData)
         dispatch(createTransaction(newData))
-        clearForm()
+        navigate("/history", { replace: true })
+        // clearForm()
     }
 
     if (!accountsLoading && !categoriesLoading) {
@@ -86,7 +89,6 @@ const TransactionForm = () => {
 
         return (
             <>
-                <h1>Страница транзакций</h1>
                 <div className="container mt-5">
                     <div className="row">
                         <div className="col-md-6 offset-md-3 shadow p-4">

@@ -31,11 +31,11 @@ const NavBar = () => {
                                 История
                             </NavLink>
                         </li>
-                        <li className="nav-item">
+                        {/* <li className="nav-item">
                             <NavLink to="transaction" className="nav-link" aria-current="page">
                                 Транзакция
                             </NavLink>
-                        </li>
+                        </li> */}
 
                         <li className="nav-item dropdown">
                             <a
@@ -58,10 +58,8 @@ const NavBar = () => {
                                         Выйти
                                     </a>
                                 </li>
-                                
                             </ul>
                         </li>
-                        
                     </ul>
                     <form className="d-flex" role="search">
                         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />

@@ -35,7 +35,11 @@ const Transaction = ({ data, onRemove }) => {
                             <div className="col-2">
                                 <div className="d-flex justify-content-end">
                                     <Link to={`/transaction/${data._id}`}>
-                                        <button type="button" className="btn btn-outline-success ms-1">
+                                        <button
+                                            type="button"
+                                            className="btn btn-outline-success ms-1"
+                                            title="Редактировать"
+                                        >
                                             <i className="bi bi-pencil-square"></i>
                                         </button>
                                     </Link>
@@ -43,9 +47,10 @@ const Transaction = ({ data, onRemove }) => {
                                     <button
                                         type="button"
                                         className="btn btn-outline-danger ms-1"
+                                        title="Удалить"
                                         onClick={() => onRemove(data._id)}
                                     >
-                                        <i className="bi bi-archive-fill"></i>
+                                        <i className="bi bi-trash3-fill"></i>
                                     </button>
                                 </div>
                             </div>

@@ -90,7 +90,7 @@ const EditTransaction = () => {
             <div className="container mt-5">
                 <div className="row">
                     <div className="col-md-6 offset-md-3 shadow p-4">
-                        <h3>Новая транзакция</h3>
+                        <h3>Редактировать транзакцию</h3>
                         <form onSubmit={handleSubmit}>
                             <SelectField
                                 label="Счет"
