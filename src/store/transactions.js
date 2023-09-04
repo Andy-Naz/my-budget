@@ -5,7 +5,7 @@ import { nanoid } from "nanoid"
 const transactionsSlice = createSlice({
     name: "transactions",
     initialState: {
-        entities: [],
+        entities: null,
         isLoading: true,
         error: null,
     },
@@ -104,7 +104,9 @@ export const getTransactions = () => (state) => state.transactions.entities
 export const getTransactionsLoadingStatus = () => (state) => state.transactions.isLoading
 export const getTransactionById = (transactionId) => (state) => {
     if (state.transactions.entities) {
-        return state.transactions.entities.find((u) => u._id === transactionId)
+        console.log(state.transactions.entities)
+        console.log(transactionId)
+        return state.transactions.entities.find((transaction) => transaction._id === transactionId)
     }
 }
 

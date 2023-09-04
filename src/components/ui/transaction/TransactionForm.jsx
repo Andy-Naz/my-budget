@@ -3,19 +3,19 @@ import { validator } from "../../../utils/validator"
 import SelectField from "../../common/form/SelectField"
 import TextField from "../../common/form/TextField"
 import TextAreaField from "../../common/form/TextAreaField"
-import { getAccounts } from "../../../store/accounts"
+import { getAccounts, getAccountsLoadingStatus } from "../../../store/accounts"
 import { useDispatch, useSelector } from "react-redux"
-import { getCategories } from "../../../store/categories"
+import { getCategories, getCategoriesLoadingStatus } from "../../../store/categories"
 import { createTransaction } from "../../../store/transactions"
 
 const TransactionForm = () => {
     const dispatch = useDispatch()
 
     const accounts = useSelector(getAccounts())
-    const accountsList = accounts.map((account) => ({ label: account.name, value: account._id }))
+    const accountsLoading = useSelector(getAccountsLoadingStatus())
 
     const categories = useSelector(getCategories())
-    const categoriesList = categories.map((category) => ({ label: category.name, value: category._id }))
+    const categoriesLoading = useSelector(getCategoriesLoadingStatus())
 
     const [data, setData] = useState({
         account: "",
@@ -80,54 +80,60 @@ const TransactionForm = () => {
         clearForm()
     }
 
-    if (accounts.length > 0 && categories.length > 0) {
-        return (
-            <div className="container mt-5">
-                <div className="row">
-                    <div className="col-md-6 offset-md-3 shadow p-4">
-                        <h3>Новая транзакция</h3>
-                        <form onSubmit={handleSubmit}>
-                            <SelectField
-                                label="Счет"
-                                defaultOption="Выбрать из списка..."
-                                options={accountsList}
-                                name="account"
-                                onChange={handleChange}
-                                value={data.account}
-                                error={errors.account}
-                            />
-                            <SelectField
-                                label="Категория"
-                                defaultOption="Выбрать из списка..."
-                                options={categoriesList}
-                                name="category"
-                                onChange={handleChange}
-                                value={data.category}
-                                error={errors.category}
-                            />
-                            <TextField
-                                label="Сумма"
-                                name="amount"
-                                type="number"
-                                value={data.amount}
-                                onChange={handleChange}
-                                error={errors.amount}
-                            />
-                            <TextAreaField
-                                value={data.comment || ""}
-                                onChange={handleChange}
-                                name="comment"
-                                label="Комментарий"
-                                error={errors.comment}
-                            />
+    if (!accountsLoading && !categoriesLoading) {
+        const accountsList = accounts.map((account) => ({ label: account.name, value: account._id }))
+        const categoriesList = categories.map((category) => ({ label: category.name, value: category._id }))
 
-                            <button className="btn btn-primary w-100 mx-auto" type="submit" disabled={!isValid}>
-                                Submit
-                            </button>
-                        </form>
+        return (
+            <>
+                <h1>Страница транзакций</h1>
+                <div className="container mt-5">
+                    <div className="row">
+                        <div className="col-md-6 offset-md-3 shadow p-4">
+                            <h3>Новая транзакция</h3>
+                            <form onSubmit={handleSubmit}>
+                                <SelectField
+                                    label="Счет"
+                                    defaultOption="Выбрать из списка..."
+                                    options={accountsList}
+                                    name="account"
+                                    onChange={handleChange}
+                                    value={data.account}
+                                    error={errors.account}
+                                />
+                                <SelectField
+                                    label="Категория"
+                                    defaultOption="Выбрать из списка..."
+                                    options={categoriesList}
+                                    name="category"
+                                    onChange={handleChange}
+                                    value={data.category}
+                                    error={errors.category}
+                                />
+                                <TextField
+                                    label="Сумма"
+                                    name="amount"
+                                    type="number"
+                                    value={data.amount}
+                                    onChange={handleChange}
+                                    error={errors.amount}
+                                />
+                                <TextAreaField
+                                    value={data.comment || ""}
+                                    onChange={handleChange}
+                                    name="comment"
+                                    label="Комментарий"
+                                    error={errors.comment}
+                                />
+
+                                <button className="btn btn-primary w-100 mx-auto" type="submit" disabled={!isValid}>
+                                    Submit
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </>
         )
     }
     return "Loading..."

@@ -3,7 +3,6 @@ import Title from "../common/widget/Title"
 import Body from "../common/widget/Body"
 
 const Widget = ({ type, title, data }) => {
-    console.log(title)
     function transformData(data, title) {
         let newData = []
         if (title === "Доходы") {

@@ -4,7 +4,7 @@ import accountService from "../services/account.service"
 const accountsSlice = createSlice({
     name: "accounts",
     initialState: {
-        entities: [],
+        entities: null,
         isLoading: true,
         error: null,
     },

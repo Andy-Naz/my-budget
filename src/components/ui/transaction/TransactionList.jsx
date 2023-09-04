@@ -1,11 +1,12 @@
 import Transaction from "./Transaction"
 import { useSelector } from "react-redux"
-import { getTransactions } from "../../../store/transactions"
+import { getTransactions, getTransactionsLoadingStatus } from "../../../store/transactions"
 
 const TransactionList = ({ onRemove }) => {
     const transactions = useSelector(getTransactions())
+    const transactionsLoading = useSelector(getTransactionsLoadingStatus())
 
-    if (transactions.length > 0) {
+    if (!transactionsLoading) {
         return (
             <>
                 {transactions.map((transaction) => (

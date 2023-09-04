@@ -1,31 +1,35 @@
 import React from "react"
 import Widget from "../components/ui/Widget"
-import useMockData from "../utils/mockData"
+// import useMockData from "../utils/mockData"
 import { useSelector } from "react-redux"
-import { getAccounts } from "../store/accounts"
-import { getTransactions } from "../store/transactions"
+import { getAccounts, getAccountsLoadingStatus } from "../store/accounts"
+import { getTransactions, getTransactionsLoadingStatus } from "../store/transactions"
 import { calculate } from "../utils/calculate"
-import { getCategories } from "../store/categories"
+import { getCategories, getCategoriesLoadingStatus } from "../store/categories"
 
 const MainPage = () => {
-    const { error, initialize } = useMockData()
-    const handleClick = () => {
-        initialize()
-    }
+    // const { error, initialize } = useMockData()
+    // const handleClick = () => {
+    //     initialize()
+    // }
 
     const accounts = useSelector(getAccounts())
     const categories = useSelector(getCategories())
     const transactions = useSelector(getTransactions())
 
-    if (accounts.length > 0 && categories.length > 0) {
+    const accountsLoading = useSelector(getAccountsLoadingStatus())
+    const categoriesLoading = useSelector(getCategoriesLoadingStatus())
+    const transactionsLoading = useSelector(getTransactionsLoadingStatus())
+
+    if (!accountsLoading && !categoriesLoading && !transactionsLoading) {
         const calculateAccounts = calculate(transactions, accounts, categories)
         const widgetTitles = ["Счета", "Доходы", "Расходы"]
 
         return (
             <>
-                <button className="btn btn-primary" onClick={handleClick}>
+                {/* <button className="btn btn-primary" onClick={handleClick}>
                     Инициализировать
-                </button>
+                </button> */}
                 <div className="container mt-3">
                     <div className="row align-items-start">
                         {widgetTitles.map((widgetTitle) => (
