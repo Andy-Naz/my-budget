@@ -5,6 +5,7 @@ import { getCurrentUserData } from "../../store/users"
 
 const NavProfile = () => {
     const currentUser = useSelector(getCurrentUserData())
+    // console.log(currentUser)
     if (!currentUser) return "Loading..."
 
     return (
@@ -16,8 +17,10 @@ const NavProfile = () => {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
             >
-                <img src={currentUser.image} alt="" height="40" className="img-responsive rounded-circle" />
-                {currentUser.name}
+                <div className="d-flex justify-content-center align-items-center">
+                    <img src={currentUser.image} alt="" height="40" className="img-responsive rounded-circle" />
+                    <div>{currentUser.name}</div>
+                </div>
             </a>
             <ul className="dropdown-menu">
                 <li>
@@ -26,9 +29,9 @@ const NavProfile = () => {
                     </a>
                 </li>
                 <li>
-                    <a className="dropdown-item" href="#">
-                        <Link to="/logout">Выйти</Link>
-                    </a>
+                    <Link to="/logout" className="dropdown-item">
+                        Выйти
+                    </Link>
                 </li>
             </ul>
         </li>

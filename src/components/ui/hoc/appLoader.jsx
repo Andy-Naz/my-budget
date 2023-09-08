@@ -9,6 +9,7 @@ const AppLoader = ({ children }) => {
     const dispatch = useDispatch()
     const isLoggedIn = useSelector(getIsLoggedIn())
     const usersStatusLoading = useSelector(getUsersLoadingStatus())
+
     useEffect(() => {
         dispatch(loadAccountsList())
         dispatch(loadCategoriesList())
@@ -16,7 +17,8 @@ const AppLoader = ({ children }) => {
         if (isLoggedIn) {
             dispatch(loadUsersList())
         }
-    }, [])
+    }, [isLoggedIn])
+    
     if (usersStatusLoading) return "Loading..."
     return children
 }

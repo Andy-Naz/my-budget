@@ -3,12 +3,14 @@ import { validator } from "../../utils/validator"
 import TextField from "../common/form/TextField"
 import { useDispatch, useSelector } from "react-redux"
 import { getAuthErrors, logIn } from "../../store/users"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 const LoginForm = () => {
+    const navigate = useNavigate()
+
     const loginError = useSelector(getAuthErrors())
 
-    const [data, setData] = useState({ email: "", password: "", stayOn: false })
+    const [data, setData] = useState({ email: "", password: "" })
     const [errors, setErrors] = useState({})
     const dispatch = useDispatch()
 
