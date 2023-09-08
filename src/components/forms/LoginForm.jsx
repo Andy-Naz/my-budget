@@ -45,8 +45,8 @@ const LoginForm = () => {
         e.preventDefault()
         const isValid = validate()
         if (!isValid) return
-        const redirect = history.location.state ? history.location.state.from.pathname : "/"
-        dispatch(logIn({ payload: data, redirect }))
+        dispatch(logIn({ payload: data }))
+        navigate("/", { replace: true })
     }
 
     return (
