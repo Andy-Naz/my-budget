@@ -67,11 +67,6 @@ const TransactionForm = () => {
 
     const isValid = Object.keys(errors).length === 0
 
-    // const clearForm = () => {
-    //     setData({ account: "", category: "", amount: "", comment: "" })
-    //     setErrors({})
-    // }
-
     const handleSubmit = (e) => {
         e.preventDefault()
         const isValid = validate()
@@ -80,7 +75,6 @@ const TransactionForm = () => {
         console.log(newData)
         dispatch(createTransaction(newData))
         navigate("/history", { replace: true })
-        // clearForm()
     }
 
     if (!accountsLoading && !categoriesLoading) {
