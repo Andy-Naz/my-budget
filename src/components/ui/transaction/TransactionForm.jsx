@@ -72,7 +72,6 @@ const TransactionForm = () => {
         const isValid = validate()
         if (!isValid) return
         const newData = { ...data, amount: Number(data.amount) }
-        console.log(newData)
         dispatch(createTransaction(newData))
         navigate("/history", { replace: true })
     }

@@ -3,7 +3,7 @@ import localStorageService from "./localStorage.service"
 
 export const httpAuth = axios.create({
     params: {
-        key: "AIzaSyBh7kS60Yuhhr4qrwGLGcQpm1Qwmt0h4Zs",
+        key: import.meta.env.VITE_FIREBASE_KEY,
     },
 })
 

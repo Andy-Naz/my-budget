@@ -10,7 +10,6 @@ const AppLoader = ({ children }) => {
     const isLoggedIn = useSelector(getIsLoggedIn())
     const usersStatusLoading = useSelector(getUsersLoadingStatus())
     const currentUserId = useSelector(getCurrentUserId())
-    console.log(currentUserId)
 
     useEffect(() => {
         dispatch(loadAccountsList())
