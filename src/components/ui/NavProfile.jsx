@@ -5,7 +5,6 @@ import { getCurrentUserData } from "../../store/users"
 
 const NavProfile = () => {
     const currentUser = useSelector(getCurrentUserData())
-    // console.log(currentUser)
     if (!currentUser) return "Loading..."
 
     return (

@@ -1,6 +1,7 @@
 import { createAction, createSlice } from "@reduxjs/toolkit"
 import transactionService from "../services/transaction.service"
 import { nanoid } from "nanoid"
+import localStorageService from "../services/localStorage.service"
 
 const transactionsSlice = createSlice({
     name: "transactions",
@@ -31,6 +32,9 @@ const transactionsSlice = createSlice({
             state.entities[state.entities.findIndex((transaction) => transaction._id === action.payload._id)] =
                 action.payload
         },
+        transactionsCleared: (state, action) => {
+            state.entities = null
+        }
     },
 })
 
@@ -48,12 +52,13 @@ const {
     transactionCreated,
     transactionRemoved,
     transactionUpdated,
+    transactionsCleared,
 } = actions
 
-export const loadTransactionsList = () => async (dispatch) => {
+export const loadTransactionsList = (userId) => async (dispatch) => {
     dispatch(transactionsRequested())
     try {
-        const { content } = await transactionService.getTransaction()
+        const { content } = await transactionService.getTransaction(userId)
         dispatch(transactionsReceived(content))
     } catch (error) {
         dispatch(transactionsRequestFailed(error.message))
@@ -62,11 +67,12 @@ export const loadTransactionsList = () => async (dispatch) => {
 
 export const createTransaction = (data) => async (dispatch) => {
     dispatch(transactionCreateRequested())
-    // const currentUserId = localStorageService.getUserId()
+    const currentUserId = localStorageService.getUserId()
     const transaction = {
         ...data,
         _id: nanoid(),
-        // created_at: Date.now(),
+        created_at: Date.now(),
+        userId: currentUserId,
     }
     try {
         const { content } = await transactionService.createTransaction(transaction)
@@ -98,6 +104,11 @@ export function updateTransaction(payload, transactionId) {
         }
     }
 }
+
+export const clearTransaction = () => (dispatch) => {
+    dispatch(transactionsCleared())
+}
+
 
 export const getTransactions = () => (state) => state.transactions.entities
 export const getTransactionsLoadingStatus = () => (state) => state.transactions.isLoading

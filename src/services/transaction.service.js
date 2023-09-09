@@ -3,8 +3,13 @@ import httpService from "./http.service"
 const transactionEndpoint = "transaction/"
 
 const transactionService = {
-    getTransaction: async () => {
-        const { data } = await httpService.get(transactionEndpoint)
+    getTransaction: async (userId) => {
+        const { data } = await httpService.get(transactionEndpoint, {
+            params: {
+                orderBy: '"userId"',
+                equalTo: `"${userId}"`
+            }
+        })
         return data
     },
     createTransaction: async (payload) => {
