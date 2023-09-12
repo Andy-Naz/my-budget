@@ -127,7 +127,7 @@ const TransactionsListPage = () => {
                         onChange={handleSearchQuery}
                     ></input>
                     <SelectField
-                        label="Категория"
+                        label="Количество транзакций на странице"
                         // defaultOption="5"
                         options={rowsList}
                         name="rows"
