@@ -1,16 +1,19 @@
 import React from "react"
 import TransactionList from "../components/ui/transaction/TransactionList"
-import HistoryFilter from "../components/ui/HistoryFilter"
+import TransactionFilter from "../components/ui/transaction/TransactionFilter"
 import { Link } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { removeTransaction } from "../store/transactions"
 
-const HistoryPage = () => {
+const TransactionListPage = () => {
     const dispatch = useDispatch()
 
     const handleRemoveTransaction = (id) => {
         dispatch(removeTransaction(id))
     }
+
+
+    
     return (
         <>
             <div className="container mt-3">
@@ -19,7 +22,7 @@ const HistoryPage = () => {
                         <h2>История транзакций</h2>
                     </div>
                     <div className="col-2">
-                        <HistoryFilter />
+                        <TransactionFilter />
                     </div>
                     <div className="col-2">
                         <Link to="/transaction">
@@ -38,4 +41,4 @@ const HistoryPage = () => {
     )
 }
 
-export default HistoryPage
+export default TransactionListPage

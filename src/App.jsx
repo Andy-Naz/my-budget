@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom"
 import MainPage from "./pages/MainPage"
-import HistoryPage from "./pages/HistoryPage"
+import HistoryPage from "./pages/TransactionListPage"
 import AppLoader from "./components/ui/hoc/appLoader"
 import TransactionLayout from "./layouts/TransactionLayout"
 import EditTransaction from "./components/ui/transaction/EditTransaction"
