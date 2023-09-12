@@ -4,14 +4,16 @@ import Pagination from "../ui/Pagination"
 import TransactionFilter from "./transaction/TransactionFilter"
 import TransactionTable from "../../components/ui/transaction/TransactionTable"
 import _ from "lodash"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { getCurrentUserId } from "../../store/users"
 import { getAccounts, getAccountsLoadingStatus } from "../../store/accounts"
 import { getCategories, getCategoriesLoadingStatus } from "../../store/categories"
-import { getTransactions } from "../../store/transactions"
+import { getTransactions, removeTransaction } from "../../store/transactions"
 import SelectField from "../common/form/SelectField"
 
 const TransactionsListPage = () => {
+    const dispatch = useDispatch()
+
     const transactions = useSelector(getTransactions())
     const currentUserId = useSelector(getCurrentUserId())
 
@@ -46,11 +48,6 @@ const TransactionsListPage = () => {
         }))
     }
 
-    const handleDelete = (userId) => {
-        // setTransactions(transactions.filter((user) => user._id !== userId));
-        console.log(userId)
-    }
-
     useEffect(() => {
         setCurrentPage(1)
     }, [selectedAccount, searchQuery, data])
@@ -76,6 +73,10 @@ const TransactionsListPage = () => {
     const clearFilter = () => {
         setSelectedAccount()
         setSearchQuery("")
+    }
+
+    const handleRemoveTransaction = (id) => {
+        dispatch(removeTransaction(id))
     }
 
     if (transactions) {
@@ -139,7 +140,7 @@ const TransactionsListPage = () => {
                             transactions={transactionCrop}
                             onSort={handleSort}
                             selectedSort={sortBy}
-                            onDelete={handleDelete}
+                            onRemove={handleRemoveTransaction}
                         />
                     )}
                     <div className="d-flex justify-content-center">
