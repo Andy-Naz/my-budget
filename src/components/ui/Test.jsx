@@ -37,6 +37,8 @@ const TransactionsListPage = () => {
     ]
     const [data, setData] = useState({
         rows: "5",
+        category: "5310f6f217c1",
+        accounts: [],
     })
 
     const pageSize = data.rows
@@ -50,6 +52,7 @@ const TransactionsListPage = () => {
 
     useEffect(() => {
         setCurrentPage(1)
+        // console.log(data)
     }, [selectedAccount, searchQuery, data])
 
     const handleAccountSelect = (item) => {
@@ -71,6 +74,15 @@ const TransactionsListPage = () => {
     }
 
     const clearFilter = () => {
+        setData((prevState) => ({
+            ...prevState,
+            category: "5310f6f217c1",
+            accounts: [],
+        }))
+        setSearchQuery("")
+    }
+
+    const applyFilter = () => {
         setSelectedAccount()
         setSearchQuery("")
     }
@@ -104,15 +116,24 @@ const TransactionsListPage = () => {
 
         return (
             <div className="d-flex">
-                {accounts && !accountsLoading && (
+                {!accountsLoading && !categoriesLoading && (
                     <div className="d-flex flex-column flex-shrink-0 p-3">
                         <TransactionFilter
-                            items={accounts}
-                            onItemSelect={handleAccountSelect}
-                            selectedItem={selectedAccount}
+                            // items={accounts}
+                            accounts={accounts}
+                            categories={categories}
+                            // onItemSelect={handleAccountSelect}
+                            // selectedItem={selectedAccount}
                             valueProperty={"_id"}
                             contentProperty={"name"}
+                            onChange={handleChange}
+                            checkedCategory={data.category}
+                            checkedAccounts={data.accounts}
+                            // data={data}
                         />
+                        <button onClick={applyFilter} className="btn btn-warning mt-2">
+                            Применить
+                        </button>
                         <button onClick={clearFilter} className="btn btn-secondary mt-2">
                             Очистить
                         </button>

@@ -3,10 +3,11 @@ import Table from "../../common/table"
 import { Link } from "react-router-dom"
 import Account from "../Account"
 import Category from "../Category"
+import Date from "../DateTransaction"
 
 const TransactionTable = ({ transactions, onSort, selectedSort, onRemove, ...rest }) => {
     const columns = {
-        date: { path: "date", name: "Дата" },
+        date: { path: "created_at", name: "Дата", component: (transaction) => <Date data={transaction} /> },
         account: { path: "account", name: "Счет", component: (transaction) => <Account data={transaction} /> },
         category: { path: "category", name: "Категория", component: (transaction) => <Category data={transaction} /> },
         comment: { path: "comment", name: "Комментарий" },
