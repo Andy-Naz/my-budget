@@ -41,6 +41,8 @@ const TransactionsListPage = () => {
         accounts: [],
     })
 
+    const [filter, setFilter] = useState(false)
+
     const pageSize = data.rows
 
     const handleChange = (target) => {
@@ -83,8 +85,8 @@ const TransactionsListPage = () => {
     }
 
     const applyFilter = () => {
-        setSelectedAccount()
         setSearchQuery("")
+        setFilter(true)
     }
 
     const handleRemoveTransaction = (id) => {
@@ -92,21 +94,34 @@ const TransactionsListPage = () => {
     }
 
     if (transactions) {
-        function filterTransactions(data) {
+        console.log(filter)
+
+        function filterTransactions(dataset) {
             let filteredTransactions = null
             if (searchQuery) {
-                filteredTransactions = data.filter((transaction) =>
+                filteredTransactions = dataset.filter((transaction) =>
                     transaction.comment.toLowerCase().includes(searchQuery.toLowerCase())
                 )
-            } else if (selectedAccount) {
-                filteredTransactions = data.filter((transaction) => transaction.account === selectedAccount._id)
+            } else if (filter) {
+                filteredTransactions = dataset.filter((transaction) => transaction.category === data.category)
+                console.log(filter)
+                console.log(filteredTransactions)
+
+                if (data.accounts.length > 0) {
+                    const filteredByAccount = filteredTransactions.filter((transaction) =>
+                        data.accounts.includes(transaction.account)
+                    )
+                    filteredTransactions = filteredByAccount
+                }
+                // setFilter(false)
             } else {
-                filteredTransactions = data
+                filteredTransactions = dataset
             }
             return filteredTransactions
         }
 
         const filteredTransactions = filterTransactions(transactions)
+        console.log(filteredTransactions)
 
         const count = filteredTransactions.length
 
