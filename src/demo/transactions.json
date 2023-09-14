@@ -1,61 +1,82 @@
 [
     {
-        "_id": "00001",
-        "account": "3fc1944fa486",
-        "category": "ec11fd44684a",
-        "amount": 50000,
-        "comment": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, suscipit?",
-        "created_at": 1624503719316
+        "_id": "demo00001",
+        "category": "100c",
+        "account": "200a",
+        "amount": 150000,
+        "comment": "Зарплата",
+        "created_at": 1685994173000
     },
     {
-        "_id": "997dfe48042c",
-        "account": "c93d25ed8e5a",
-        "category": "ec11fd44684a",
+        "_id": "demo00002",
+        "category": "100c",
+        "account": "200a",
         "amount": 20000,
-        "comment": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur quisquam ullam assumenda numquam inventore dolore asperiores rem, repellat iusto optio"
+        "comment": "Возврат за некачественный товар",
+        "created_at": 1686253373000
     },
     {
-        "_id": "1ac410d88dea",
-        "account": "4525e1012ee0",
-        "category": "ec11fd44684a",
-        "amount": 10000,
-        "comment": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur quisquam ullam assumenda"
-    },
-    { "_id": "b85b81b8aaf6", "account": "3fc1944fa486", "category": "5310f6f217c1", "amount": 200000, "comment": "" },
-    {
-        "_id": "02ce627be325",
-        "account": "c93d25ed8e5a",
-        "category": "5310f6f217c1",
+        "_id": "demo00003",
+        "category": "100c",
+        "account": "300a",
         "amount": 5000,
-        "comment": "Lorem ipsum"
+        "comment": "Проценты по вкладу",
+        "created_at": 1686858173000
     },
     {
-        "_id": "70ca70afb4e8",
-        "account": "4525e1012ee0",
-        "category": "ec11fd44684a",
-        "amount": 3000,
-        "comment": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur quisquam ullam assumenda numquam inventore dolore asperiores rem"
+        "_id": "demo00004",
+        "category": "100c",
+        "account": "100a",
+        "amount": 1000,
+        "comment": "Возврат долга",
+        "created_at": 1686858173000
     },
     {
-        "_id": "fde38c80c3d9",
-        "account": "3fc1944fa486",
-        "category": "5310f6f217c1",
-        "amount": 700,
-        "comment": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur quisquam ullam assumenda numquam inventore dolore asperiores rem"
-    },
-    { "_id": "004fba01ca89", "account": "c93d25ed8e5a", "category": "5310f6f217c1", "amount": 23000, "comment": "" },
-    {
-        "_id": "f86adb464e45",
-        "account": "4525e1012ee0",
-        "category": "ec11fd44684a",
-        "amount": 37000,
-        "comment": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur quisquam ullam"
+        "_id": "demo00005",
+        "category": "100c",
+        "account": "200a",
+        "amount": 75000,
+        "comment": "Выплата по страховке",
+        "created_at": 1686858173000
     },
     {
-        "_id": "7a7abb0602bf",
-        "account": "c93d25ed8e5a",
-        "category": "5310f6f217c1",
-        "amount": 68000,
-        "comment": "Lorem ipsum dolor sit amet consectetur"
+        "_id": "demo00006",
+        "category": "200c",
+        "account": "200a",
+        "amount": 10000,
+        "comment": "Коммуналка",
+        "created_at": 1687549373000
+    },
+    {
+        "_id": "demo00007",
+        "category": "200c",
+        "account": "200a",
+        "amount": 15000,
+        "comment": "Покупка продуктов",
+        "created_at": 1686426173000
+    },
+    {
+        "_id": "demo00008",
+        "category": "200c",
+        "account": "300a",
+        "amount": 20000,
+        "comment": "Новый вклад на 3 месяца",
+        "created_at": 1688154173000
+    },
+    {
+        "_id": "demo00009",
+        "category": "200c",
+        "account": "100a",
+        "amount": 1000,
+        "comment": "Бензин",
+        "created_at": 1686166973000
+    },
+    {
+        "_id": "demo00010",
+        "category": "200c",
+        "account": "200a",
+        "amount": 50000,
+        "comment": "Покупка бытовой техники",
+        "created_at": 1687030973000
     }
 ]

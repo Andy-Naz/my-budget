@@ -1,14 +1,15 @@
 import httpService from "./http.service"
 
 const transactionEndpoint = "transaction/"
+const transactionDemoEndpoint = "transactionDemo/"
 
 const transactionService = {
-    getTransaction: async (userId) => {
+    getTransactions: async (userId) => {
         const { data } = await httpService.get(transactionEndpoint, {
             params: {
                 orderBy: '"userId"',
-                equalTo: `"${userId}"`
-            }
+                equalTo: `"${userId}"`,
+            },
         })
         return data
     },
@@ -23,6 +24,10 @@ const transactionService = {
     updateTransaction: async (payload, transactionId) => {
         const { data } = await httpService.patch(transactionEndpoint + transactionId, payload)
         return data
-    }
+    },
+    getTransactionsDemo: async () => {
+        const { data } = await httpService.get(transactionDemoEndpoint)
+        return data
+    },
 }
 export default transactionService

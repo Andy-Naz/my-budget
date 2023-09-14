@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getCurrentUserId, getIsLoggedIn, getUsersLoadingStatus, loadUsersList } from "../../../store/users"
-import { loadTransactionsList } from "../../../store/transactions"
+import { loadTransactionsDemoList, loadTransactionsList } from "../../../store/transactions"
 import { loadAccountsList } from "../../../store/accounts"
 import { loadCategoriesList } from "../../../store/categories"
 
@@ -17,6 +17,8 @@ const AppLoader = ({ children }) => {
         if (isLoggedIn) {
             dispatch(loadUsersList())
             dispatch(loadTransactionsList(currentUserId))
+        } else {
+            dispatch(loadTransactionsDemoList())
         }
     }, [isLoggedIn, currentUserId])
 

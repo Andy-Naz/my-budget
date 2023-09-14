@@ -58,7 +58,17 @@ const {
 export const loadTransactionsList = (userId) => async (dispatch) => {
     dispatch(transactionsRequested())
     try {
-        const { content } = await transactionService.getTransaction(userId)
+        const { content } = await transactionService.getTransactions(userId)
+        dispatch(transactionsReceived(content))
+    } catch (error) {
+        dispatch(transactionsRequestFailed(error.message))
+    }
+}
+
+export const loadTransactionsDemoList = () => async (dispatch) => {
+    dispatch(transactionsRequested())
+    try {
+        const { content } = await transactionService.getTransactionsDemo()
         dispatch(transactionsReceived(content))
     } catch (error) {
         dispatch(transactionsRequestFailed(error.message))

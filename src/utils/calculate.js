@@ -1,7 +1,7 @@
 export function calculate(transactions, accounts, categories) {
     const calculateAccounts = []
-    const incomeId = categories.find((item) => item.name === "Доход")["_id"]
-    const costId = categories.find((item) => item.name === "Расход")["_id"]
+    const incomeId = categories.find((item) => item.name === "Доходы")["_id"]
+    const costId = categories.find((item) => item.name === "Расходы")["_id"]
 
     accounts.forEach((account) => {
         if (transactions) {
