@@ -4,7 +4,6 @@ import _ from "lodash"
 const TableBody = ({ data, columns }) => {
     const renderContent = (item, column) => {
         if (columns[column].component) {
-            console.log(item)
             const component = columns[column].component
             if (typeof component === "function") {
                 return component(item)

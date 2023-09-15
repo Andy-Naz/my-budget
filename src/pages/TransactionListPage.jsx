@@ -26,20 +26,19 @@ const TransactionsListPage = () => {
     const [currentPage, setCurrentPage] = useState(1)
     const [searchQuery, setSearchQuery] = useState("")
     const [sortBy, setSortBy] = useState({ path: "name", order: "asc" })
-    console.log(sortBy)
-    const rowsList = [
-        { label: "5", value: "5" },
-        { label: "10", value: "10" },
-        { label: "15", value: "15" },
-    ]
+
     const [data, setData] = useState({
         rows: "5",
         category: "5310f6f217c1",
         accounts: [],
     })
+    const [filteredTransactions, setFilteredTransactions] = useState()
 
-    const [filter, setFilter] = useState(false)
-
+    const rowsList = [
+        { label: "5", value: "5" },
+        { label: "10", value: "10" },
+        { label: "15", value: "15" },
+    ]
     const pageSize = data.rows
 
     const handleChange = (target) => {
@@ -50,17 +49,34 @@ const TransactionsListPage = () => {
     }
 
     useEffect(() => {
+        setFilteredTransactions(transactions)
+    }, [transactions])
+
+    useEffect(() => {
         setCurrentPage(1)
-        // console.log(data)
     }, [searchQuery, data])
 
-    const handleAccountSelect = (item) => {
-        setSearchQuery("")
-        setSelectedAccount(item)
+    const handleFilter = (selectedRadioCategory, selectedCheckboxAccount) => {
+        let updatedFilteredTransactions = null
+        if (selectedRadioCategory && selectedCheckboxAccount.length > 0) {
+            updatedFilteredTransactions = transactions
+                .filter((transaction) => selectedRadioCategory === transaction.category)
+                .filter((transaction) => selectedCheckboxAccount.includes(transaction.account))
+        } else if (selectedRadioCategory) {
+            updatedFilteredTransactions = transactions.filter(
+                (transaction) => selectedRadioCategory === transaction.category
+            )
+        } else if (selectedCheckboxAccount.length > 0) {
+            updatedFilteredTransactions = transactions.filter((transaction) =>
+                selectedCheckboxAccount.includes(transaction.account)
+            )
+        } else {
+            updatedFilteredTransactions = transactions
+        }
+        setFilteredTransactions(updatedFilteredTransactions)
     }
 
     const handleSearchQuery = ({ target }) => {
-        setSelectedAccount()
         setSearchQuery(target.value)
     }
 
@@ -72,53 +88,16 @@ const TransactionsListPage = () => {
         setSortBy(item)
     }
 
-    const clearFilter = () => {
-        setData((prevState) => ({
-            ...prevState,
-            category: "5310f6f217c1",
-            accounts: [],
-        }))
-        setSearchQuery("")
-    }
-
-    const applyFilter = () => {
-        setSearchQuery("")
-        setFilter(true)
-    }
-
     const handleRemoveTransaction = (id) => {
         dispatch(removeTransaction(id))
     }
 
-    if (transactions) {
-        console.log(filter)
-
-        function filterTransactions(dataset) {
-            let filteredTransactions = null
-            if (searchQuery) {
-                filteredTransactions = dataset.filter((transaction) =>
-                    transaction.comment.toLowerCase().includes(searchQuery.toLowerCase())
-                )
-            } else if (filter) {
-                filteredTransactions = dataset.filter((transaction) => transaction.category === data.category)
-                console.log(filter)
-                console.log(filteredTransactions)
-
-                if (data.accounts.length > 0) {
-                    const filteredByAccount = filteredTransactions.filter((transaction) =>
-                        data.accounts.includes(transaction.account)
-                    )
-                    filteredTransactions = filteredByAccount
-                }
-                // setFilter(false)
-            } else {
-                filteredTransactions = dataset
-            }
-            return filteredTransactions
+    if (filteredTransactions) {
+        if (searchQuery) {
+            filteredTransactions.filter((transaction) =>
+                transaction.comment.toLowerCase().includes(searchQuery.toLowerCase())
+            )
         }
-
-        const filteredTransactions = filterTransactions(transactions)
-        console.log(filteredTransactions)
 
         const count = filteredTransactions.length
 
@@ -128,60 +107,56 @@ const TransactionsListPage = () => {
 
         return (
             <div className="d-flex">
-                {!accountsLoading && !categoriesLoading && (
-                    <div className="d-flex flex-column flex-shrink-0 p-3">
-                        <TransactionFilter
-                            // items={accounts}
-                            accounts={accounts}
-                            categories={categories}
-                            // onItemSelect={handleAccountSelect}
-                            // selectedItem={selectedAccount}
-                            valueProperty={"_id"}
-                            contentProperty={"name"}
-                            onChange={handleChange}
-                            checkedCategory={data.category}
-                            checkedAccounts={data.accounts}
-                            // data={data}
-                        />
-                        <button onClick={applyFilter} className="btn btn-warning mt-2">
-                            Применить
-                        </button>
-                        <button onClick={clearFilter} className="btn btn-secondary mt-2">
-                            Очистить
-                        </button>
-                    </div>
-                )}
-                <div className="d-flex flex-column">
-                    <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Поиск по комментарию..."
-                        value={searchQuery}
-                        onChange={handleSearchQuery}
-                    ></input>
-                    <SelectField
-                        label="Количество транзакций на странице"
-                        options={rowsList}
-                        name="rows"
-                        onChange={handleChange}
-                        value={data.rows}
-                    />
-
-                    {count > 0 && (
-                        <TransactionTable
-                            transactions={transactionCrop}
-                            onSort={handleSort}
-                            selectedSort={sortBy}
-                            onRemove={handleRemoveTransaction}
-                        />
+                <div className="d-flex">
+                    {!accountsLoading && !categoriesLoading && (
+                        <div className="d-flex flex-column flex-shrink-0 p-3">
+                            <TransactionFilter
+                                accounts={accounts}
+                                categories={categories}
+                                valueProperty={"_id"}
+                                contentProperty={"name"}
+                                onFilter={handleFilter}
+                            />
+                        </div>
                     )}
-                    <div className="d-flex justify-content-center">
-                        <Pagination
-                            itemsCount={count}
-                            pageSize={pageSize}
-                            currentPage={currentPage}
-                            onPageChange={handlePageChange}
+                </div>
+                <div className="d-flex flex-column">
+                    <div className="d-flex">
+                        <input
+                            className="form-control me-2"
+                            type="search"
+                            placeholder="Поиск по комментарию..."
+                            value={searchQuery}
+                            onChange={handleSearchQuery}
                         />
+                        <button className="btn btn-outline-success">Найти</button>
+                    </div>
+
+                    <div className="d-flex flex-column">
+                        <SelectField
+                            label="Количество транзакций на странице"
+                            options={rowsList}
+                            name="rows"
+                            onChange={handleChange}
+                            value={data.rows}
+                        />
+
+                        {count > 0 && (
+                            <TransactionTable
+                                transactions={transactionCrop}
+                                onSort={handleSort}
+                                selectedSort={sortBy}
+                                onRemove={handleRemoveTransaction}
+                            />
+                        )}
+                        <div className="d-flex justify-content-center">
+                            <Pagination
+                                itemsCount={count}
+                                pageSize={pageSize}
+                                currentPage={currentPage}
+                                onPageChange={handlePageChange}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>

@@ -16,14 +16,19 @@ const TestPage = () => {
     const groups = ["Man", "Woman"]
 
     const handleFilter = (selectedCategories, selectedRadioGroup) => {
-        if (selectedCategories.length === 0 && !selectedRadioGroup) {
-            setFilteredProducts(products)
-        } else {
-            const updatedFilteredProducts = products
-                .filter((product) => selectedCategories.includes(product.category))
+        let updatedFilteredProducts = null
+        if (selectedRadioGroup && selectedCategories.length > 0) {
+            updatedFilteredProducts = products
                 .filter((product) => selectedRadioGroup === product.group)
-            setFilteredProducts(updatedFilteredProducts)
+                .filter((product) => selectedCategories.includes(product.category))
+        } else if (selectedRadioGroup) {
+            updatedFilteredProducts = products.filter((product) => selectedRadioGroup === product.group)
+        } else if (selectedCategories.length > 0) {
+            updatedFilteredProducts = products.filter((product) => selectedCategories.includes(product.category))
+        } else {
+            updatedFilteredProducts = products
         }
+        setFilteredProducts(updatedFilteredProducts)
     }
 
     return (
