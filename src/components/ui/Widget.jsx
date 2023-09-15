@@ -1,6 +1,7 @@
 import React from "react"
 import Title from "../common/widget/Title"
 import Body from "../common/widget/Body"
+import BottomLine from "../common/widget/BottomLine"
 
 const Widget = ({ type, title, data }) => {
     function transformData(data, title) {
@@ -22,13 +23,17 @@ const Widget = ({ type, title, data }) => {
     }
 
     const newData = transformData(data, title)
-
+    const subTotal = newData.reduce((acc, data) => {
+        return (acc += data.value)
+    }, 0)
+    
     return (
         <>
             <div className="card">
                 <div className="card-body">
                     <Title title={title} />
-                    <Body type={type} data={newData} />
+                    <Body data={newData} />
+                    <BottomLine total={subTotal} />
                 </div>
             </div>
         </>

@@ -47,11 +47,6 @@ const MainPage = () => {
                         ))}
                     </div>
                 </div>
-                <div className="container">
-                    <div className="row">
-                        <div className="col">{/* <Widget type="analytics" /> */}</div>
-                    </div>
-                </div>
             </>
         )
     }

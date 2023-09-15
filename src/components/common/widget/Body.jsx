@@ -1,12 +1,28 @@
 import React from "react"
-import Table from "./Table"
-import Diagram from "./Diagram"
 
-const Body = ({ type, data }) => {
-    if (type === "card") {
-        return <Table data={data}/>
-    }
-    return <Diagram />
+const Body = ({ data }) => {
+    return (
+        <table className="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Наименование</th>
+                    <th scope="col" className="d-flex justify-content-end">
+                        Сумма
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {data.map((item, index) => (
+                    <tr key={item._id}>
+                        <td scope="row">{index + 1}</td>
+                        <td>{item.name}</td>
+                        <td className="d-flex justify-content-end">{item.value.toLocaleString()}</td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
+    )
 }
 
 export default Body
