@@ -1,9 +1,9 @@
 import React from "react"
-import Table from "../../common/table"
 import { Link } from "react-router-dom"
 import Account from "../Account"
 import Category from "../Category"
 import Date from "../DateTransaction"
+import Table from "../../common/table/table"
 
 const TransactionTable = ({ transactions, onSort, selectedSort, onRemove, ...rest }) => {
     const columns = {

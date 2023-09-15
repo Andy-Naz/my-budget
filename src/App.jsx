@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom"
 import MainPage from "./pages/MainPage"
-import HistoryPage from "./pages/TransactionListPage"
+import TransactionListPage from "./pages/TransactionListPage"
 import AppLoader from "./components/ui/hoc/appLoader"
 import TransactionLayout from "./layouts/TransactionLayout"
 import EditTransaction from "./components/ui/transaction/EditTransaction"
@@ -19,7 +19,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<MainLayout />}>
                         <Route index element={<MainPage />} />
-                        <Route path="history" element={<HistoryPage />} />
+                        <Route path="history" element={<TransactionListPage />} />
                         <Route path="transaction" element={<TransactionLayout />}>
                             <Route index element={<TransactionForm />} />
                             <Route path=":transactionId" element={<EditTransaction />} />

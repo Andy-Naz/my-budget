@@ -36,6 +36,11 @@ const NavBar = () => {
                                 История
                             </NavLink>
                         </li>
+                        <li className="nav-item d-flex align-items-center">
+                            <NavLink to="test" className="nav-link" aria-current="page">
+                                Тест
+                            </NavLink>
+                        </li>
                         {isLoggedIn ? (
                             <NavProfile />
                         ) : (
