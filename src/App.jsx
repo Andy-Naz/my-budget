@@ -11,6 +11,9 @@ import RegisterForm from "./components/forms/RegisterForm"
 import LoginForm from "./components/forms/LoginForm"
 import AuthLayout from "./layouts/AuthLayout"
 import LogOut from "./layouts/LogOut"
+import ProtectedRoutes from "./components/ui/ProtectedRoutes"
+import UserPage from "./pages/UserPage"
+import UserPageEdit from "./pages/UserPageEdit"
 
 function App() {
     return (
@@ -27,6 +30,10 @@ function App() {
                         <Route path="auth" element={<AuthLayout />}>
                             <Route path="signIn" element={<LoginForm />} />
                             <Route path="signUp" element={<RegisterForm />} />
+                        </Route>
+                        <Route element={<ProtectedRoutes />}>
+                            <Route path="user/:userId" element={<UserPage />} />
+                            <Route path="user/:userId/edit" element={<UserPageEdit />} />
                         </Route>
                         <Route path="logout" element={<LogOut />} />
                         <Route path="test" element={<TestPage />} />

@@ -5,36 +5,39 @@ import { getCurrentUserData } from "../../store/users"
 
 const NavProfile = () => {
     const currentUser = useSelector(getCurrentUserData())
-    if (!currentUser) return "Loading..."
+    
+    if (currentUser) {
+        return (
+            <li className="nav-item dropdown">
+                <a
+                    className="nav-link dropdown-toggle"
+                    href="#"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                >
+                    <div className="d-flex justify-content-center align-items-center">
+                        <img src={currentUser.image} alt="" height="40" className="img-responsive rounded-circle" />
+                        <div>{currentUser.name}</div>
+                    </div>
+                </a>
+                <ul className="dropdown-menu">
+                    <li>
+                        <Link to={`/user/${currentUser._id}`} className="dropdown-item">
+                            Профиль
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/logout" className="dropdown-item">
+                            Выйти
+                        </Link>
+                    </li>
+                </ul>
+            </li>
+        )
+    }
 
-    return (
-        <li className="nav-item dropdown">
-            <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-            >
-                <div className="d-flex justify-content-center align-items-center">
-                    <img src={currentUser.image} alt="" height="40" className="img-responsive rounded-circle" />
-                    <div>{currentUser.name}</div>
-                </div>
-            </a>
-            <ul className="dropdown-menu">
-                <li>
-                    <a className="dropdown-item" href="#">
-                        Профиль
-                    </a>
-                </li>
-                <li>
-                    <Link to="/logout" className="dropdown-item">
-                        Выйти
-                    </Link>
-                </li>
-            </ul>
-        </li>
-    )
+    return "Loading..."
 }
 
 export default NavProfile
