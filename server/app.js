@@ -2,6 +2,7 @@ const express = require("express")
 const mongoose = require("mongoose")
 const config = require("config")
 const chalk = require("chalk")
+const initDatabase = require("./startUp/initDatabase")
 
 //andrey
 //SymzsTpWUaKM4cps
@@ -12,9 +13,9 @@ const PORT = config.get("port") ?? 8080
 
 async function start() {
     try {
-        // mongoose.connection.once("open", () => {
-        //     initDatabase()
-        // })
+        mongoose.connection.once("open", () => {
+            initDatabase()
+        })
 
         await mongoose.connect(config.get("mongoUri"))
         console.log(chalk.bgBlue("MongoDB connected"))

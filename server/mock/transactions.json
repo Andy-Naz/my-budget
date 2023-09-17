@@ -1,0 +1,72 @@
+[
+    {
+        "_id": "demo00001",
+        "category": "100c",
+        "account": "200a",
+        "amount": 150000,
+        "comment": "Зарплата"
+    },
+    {
+        "_id": "demo00002",
+        "category": "100c",
+        "account": "200a",
+        "amount": 20000,
+        "comment": "Возврат за некачественный товар"
+    },
+    {
+        "_id": "demo00003",
+        "category": "100c",
+        "account": "300a",
+        "amount": 5000,
+        "comment": "Проценты по вкладу"
+    },
+    {
+        "_id": "demo00004",
+        "category": "100c",
+        "account": "100a",
+        "amount": 1000,
+        "comment": "Возврат долга"
+    },
+    {
+        "_id": "demo00005",
+        "category": "100c",
+        "account": "200a",
+        "amount": 75000,
+        "comment": "Выплата по страховке"
+    },
+    {
+        "_id": "demo00006",
+        "category": "200c",
+        "account": "200a",
+        "amount": 10000,
+        "comment": "Коммуналка"
+    },
+    {
+        "_id": "demo00007",
+        "category": "200c",
+        "account": "200a",
+        "amount": 15000,
+        "comment": "Покупка продуктов"
+    },
+    {
+        "_id": "demo00008",
+        "category": "200c",
+        "account": "300a",
+        "amount": 20000,
+        "comment": "Новый вклад на 3 месяца"
+    },
+    {
+        "_id": "demo00009",
+        "category": "200c",
+        "account": "100a",
+        "amount": 1000,
+        "comment": "Бензин"
+    },
+    {
+        "_id": "demo00010",
+        "category": "200c",
+        "account": "200a",
+        "amount": 50000,
+        "comment": "Покупка бытовой техники"
+    }
+]
