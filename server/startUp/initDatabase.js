@@ -1,10 +1,10 @@
 const accountsMock = require("../mock/accounts.json")
 const categoriesMock = require("../mock/categories.json")
-// const transactionsMock = require("../mock/transactions.json")
+const demoMock = require("../mock/demo.json")
 
 const Account = require("../models/Account")
 const Category = require("../models/Category")
-// const Transaction = require("../models/Transaction")
+const Demo = require("../models/Demo")
 
 module.exports = async () => {
     const accounts = await Account.find()
@@ -17,10 +17,10 @@ module.exports = async () => {
         await createInitialEntity(Category, categoriesMock)
     }
 
-    // const transactions = await Transaction.find()
-    // if (transactions.length !== transactionsMock.length) {
-    //     await createInitialEntity(Transaction, transactionsMock)
-    // }
+    const demo = await Demo.find()
+    if (demo.length !== Demo.length) {
+        await createInitialEntity(Demo, demoMock)
+    }
 }
 
 async function createInitialEntity(Model, data) {

@@ -1,71 +1,71 @@
 [
     {
         "_id": "demo00001",
-        "category": "100c",
-        "account": "200a",
+        "category": "Доходы",
+        "account": "Банковская карта",
         "amount": 150000,
         "comment": "Зарплата"
     },
     {
         "_id": "demo00002",
-        "category": "100c",
-        "account": "200a",
+        "category": "Доходы",
+        "account": "Банковская карта",
         "amount": 20000,
         "comment": "Возврат за некачественный товар"
     },
     {
         "_id": "demo00003",
-        "category": "100c",
-        "account": "300a",
+        "category": "Доходы",
+        "account": "Операции по вкладу",
         "amount": 5000,
         "comment": "Проценты по вкладу"
     },
     {
         "_id": "demo00004",
-        "category": "100c",
-        "account": "100a",
+        "category": "Доходы",
+        "account": "Наличные",
         "amount": 1000,
         "comment": "Возврат долга"
     },
     {
         "_id": "demo00005",
-        "category": "100c",
-        "account": "200a",
+        "category": "Доходы",
+        "account": "Банковская карта",
         "amount": 75000,
         "comment": "Выплата по страховке"
     },
     {
         "_id": "demo00006",
-        "category": "200c",
-        "account": "200a",
+        "category": "Расходы",
+        "account": "Банковская карта",
         "amount": 10000,
         "comment": "Коммуналка"
     },
     {
         "_id": "demo00007",
-        "category": "200c",
-        "account": "200a",
+        "category": "Расходы",
+        "account": "Банковская карта",
         "amount": 15000,
         "comment": "Покупка продуктов"
     },
     {
         "_id": "demo00008",
-        "category": "200c",
-        "account": "300a",
+        "category": "Расходы",
+        "account": "Операции по вкладу",
         "amount": 20000,
         "comment": "Новый вклад на 3 месяца"
     },
     {
         "_id": "demo00009",
-        "category": "200c",
-        "account": "100a",
+        "category": "Расходы",
+        "account": "Наличные",
         "amount": 1000,
         "comment": "Бензин"
     },
     {
         "_id": "demo00010",
-        "category": "200c",
-        "account": "200a",
+        "category": "Расходы",
+        "account": "Банковская карта",
         "amount": 50000,
         "comment": "Покупка бытовой техники"
     }
