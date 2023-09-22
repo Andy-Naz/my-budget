@@ -4,69 +4,79 @@
         "category": "Доходы",
         "account": "Банковская карта",
         "amount": 150000,
-        "comment": "Зарплата"
+        "comment": "Зарплата",
+        "type": "demo"
     },
     {
         "_id": "demo00002",
         "category": "Доходы",
         "account": "Банковская карта",
         "amount": 20000,
-        "comment": "Возврат за некачественный товар"
+        "comment": "Возврат за некачественный товар",
+        "type": "demo"
     },
     {
         "_id": "demo00003",
         "category": "Доходы",
         "account": "Операции по вкладу",
         "amount": 5000,
-        "comment": "Проценты по вкладу"
+        "comment": "Проценты по вкладу",
+        "type": "demo"
     },
     {
         "_id": "demo00004",
         "category": "Доходы",
         "account": "Наличные",
         "amount": 1000,
-        "comment": "Возврат долга"
+        "comment": "Возврат долга",
+        "type": "demo"
     },
     {
         "_id": "demo00005",
         "category": "Доходы",
         "account": "Банковская карта",
         "amount": 75000,
-        "comment": "Выплата по страховке"
+        "comment": "Выплата по страховке",
+        "type": "demo"
     },
     {
         "_id": "demo00006",
         "category": "Расходы",
         "account": "Банковская карта",
         "amount": 10000,
-        "comment": "Коммуналка"
+        "comment": "Коммуналка",
+        "type": "demo"
     },
     {
         "_id": "demo00007",
         "category": "Расходы",
         "account": "Банковская карта",
         "amount": 15000,
-        "comment": "Покупка продуктов"
+        "comment": "Покупка продуктов",
+        "type": "demo"
     },
     {
         "_id": "demo00008",
         "category": "Расходы",
         "account": "Операции по вкладу",
         "amount": 20000,
-        "comment": "Новый вклад на 3 месяца"
+        "comment": "Новый вклад на 3 месяца",
+        "type": "demo"
     },
     {
         "_id": "demo00009",
         "category": "Расходы",
         "account": "Наличные",
         "amount": 1000,
-        "comment": "Бензин"
+        "comment": "Бензин",
+        "type": "demo"
     },
     {
         "_id": "demo00010",
         "category": "Расходы",
         "account": "Банковская карта",
         "amount": 50000,
-        "comment": "Покупка бытовой техники"
+        "comment": "Покупка бытовой техники",
+        "type": "demo"
     }
 ]

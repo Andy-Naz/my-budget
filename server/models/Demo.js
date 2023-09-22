@@ -6,9 +6,10 @@ const schema = new Schema(
         account: { type: String, required: true },
         amount: { type: Number, required: true },
         comment: { type: String, required: true },
+        type: { type: String, required: true },
     },
     {
-        timestamps: { createdAt: "created_at" }
+        timestamps: { createdAt: "created_at" },
     }
 )
 
