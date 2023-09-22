@@ -8,7 +8,7 @@ const http = axios.create({
     baseURL: configFile.apiEndpoint,
 })
 
-http.defaults.baseURL = configFile.apiEndpoint
+// http.defaults.baseURL = configFile.apiEndpoint
 
 http.interceptors.request.use(
     async function (config) {
