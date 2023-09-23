@@ -85,7 +85,8 @@ export const logIn =
         dispatch(authRequested())
         try {
             const data = await authService.login({ email, password })
-            dispatch(authRequestSuccess({ userId: data.localId }))
+            console.log(data)
+            dispatch(authRequestSuccess({ userId: data.userId }))
             localStorageService.setTokens(data)
         } catch (error) {
             const { code, message } = error.response.data.error
@@ -113,7 +114,6 @@ export const logOut = () => (dispatch) => {
     localStorageService.removeAuthData()
     dispatch(userLoggedOut())
 }
-
 
 export function updateUser(payload) {
     return async function (dispatch) {

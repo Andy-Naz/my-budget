@@ -12,7 +12,7 @@ function LogOut() {
         dispatch(clearTransaction())
     }, [])
 
-    return <Navigate to="/auth/signIn" />
+    return <Navigate to="/" />
 }
 
 export default LogOut
