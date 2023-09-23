@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react"
 import { validator } from "../../utils/validator"
 import TextField from "../common/form/TextField"
 import { useDispatch, useSelector } from "react-redux"
-import { getAuthErrors, logIn } from "../../store/users"
+import { getAuthErrors, getIsLoggedIn, logIn } from "../../store/users"
 import { Link, useNavigate } from "react-router-dom"
 
 const LoginForm = () => {
     const navigate = useNavigate()
 
     const loginError = useSelector(getAuthErrors())
+    const isLoggedIn = useSelector(getIsLoggedIn())
 
     const [data, setData] = useState({ email: "", password: "" })
     const [errors, setErrors] = useState({})
@@ -32,6 +33,13 @@ const LoginForm = () => {
     }
 
     useEffect(() => {
+        if (isLoggedIn) {
+            // dispatch(loadUsersList)
+            navigate("/", { replace: true })
+        }
+    }, [isLoggedIn])
+
+    useEffect(() => {
         validate()
     }, [data])
 
@@ -48,7 +56,7 @@ const LoginForm = () => {
         const isValid = validate()
         if (!isValid) return
         dispatch(logIn({ payload: data }))
-        navigate("/", { replace: true })
+        // navigate("/", { replace: true })
     }
 
     return (

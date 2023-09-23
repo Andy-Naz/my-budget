@@ -52,8 +52,6 @@ router.delete("/:transactionId", auth, async (req, res) => {
 router.patch("/:transactionId", auth, async (req, res) => {
     try {
         const { transactionId } = req.params
-        console.log(transactionId)
-        console.log(req.body._id)
         if (transactionId === req.body._id) {
             const updatedTransaction = await Transaction.findByIdAndUpdate(transactionId, req.body, { new: true })
             res.send(updatedTransaction)
