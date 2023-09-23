@@ -3,7 +3,7 @@ import { useSelector } from "react-redux"
 import { NavLink } from "react-router-dom"
 import { getIsLoggedIn } from "../../store/users"
 import NavProfile from "./NavProfile"
-import { Disclosure, Menu, Transition } from "@headlessui/react"
+import { Disclosure, Menu } from "@headlessui/react"
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline"
 
 const NavBar = () => {
@@ -97,20 +97,19 @@ const NavBar = () => {
                     <Disclosure.Panel className="sm:hidden">
                         <div className="space-y-1 px-2 pb-3 pt-2">
                             {navigation.map((item) => (
-                                <Disclosure.Button
-                                    key={item.name}
-                                    as="a"
-                                    href={item.href}
-                                    className={classNames(
-                                        item.current
-                                            ? "bg-gray-900 text-white"
-                                            : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                                        "block rounded-md px-3 py-2 text-base font-medium"
-                                    )}
-                                    aria-current={item.current ? "page" : undefined}
-                                >
-                                    {item.name}
-                                </Disclosure.Button>
+                                <NavLink key={item.name} to={item.to}>
+                                    <Disclosure.Button
+                                        className={classNames(
+                                            item.current
+                                                ? "bg-gray-900 text-white"
+                                                : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                                            "block rounded-md px-3 py-2 text-base font-medium"
+                                        )}
+                                        aria-current={item.current ? "page" : undefined}
+                                    >
+                                        {item.name}
+                                    </Disclosure.Button>
+                                </NavLink>
                             ))}
                         </div>
                     </Disclosure.Panel>
