@@ -70,14 +70,11 @@ const {
     usersRequestFailed,
     authRequestSuccess,
     authRequestFailed,
-    userCreated,
     userUpdated,
     userLoggedOut,
 } = actions
 
 const authRequested = createAction("users/authRequested")
-const userCreateRequested = createAction("users/userCreateRequested")
-const userCreateFailed = createAction("users/userCreateFailed")
 const userUpdateRequested = createAction("users/userUpdateRequested")
 const userUpdateFailed = createAction("users/userUpdateFailed")
 
@@ -101,45 +98,22 @@ export const logIn =
         }
     }
 
-export const singUp =
-    ({ email, password, ...rest }) =>
-    async (dispatch) => {
-        dispatch(authRequested())
-        try {
-            const data = await authService.register({ email, password })
-            dispatch(authRequestSuccess({ userId: data.localId }))
-            localStorageService.setTokens(data)
-            dispatch(
-                createUser({
-                    _id: data.localId,
-                    email,
-                    image: `https://avatars.dicebear.com/api/avataaars/${(Math.random() + 1)
-                        .toString(36)
-                        .substring(7)}.svg`,
-                    ...rest,
-                })
-            )
-        } catch (error) {
-            dispatch(authRequestFailed(error.message))
-        }
+export const singUp = (payload) => async (dispatch) => {
+    dispatch(authRequested())
+    try {
+        const data = await authService.register(payload)
+        dispatch(authRequestSuccess({ userId: data.userId }))
+        localStorageService.setTokens(data)
+    } catch (error) {
+        dispatch(authRequestFailed(error.message))
     }
+}
 
 export const logOut = () => (dispatch) => {
     localStorageService.removeAuthData()
     dispatch(userLoggedOut())
 }
 
-function createUser(payload) {
-    return async function (dispatch) {
-        dispatch(userCreateRequested())
-        try {
-            const { content } = await userService.create(payload)
-            dispatch(userCreated(content))
-        } catch (error) {
-            dispatch(userCreateFailed(error.message))
-        }
-    }
-}
 
 export function updateUser(payload) {
     return async function (dispatch) {
