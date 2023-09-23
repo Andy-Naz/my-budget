@@ -14,7 +14,6 @@ const transactionService = {
         return data
     },
     createTransaction: async (payload) => {
-        console.log(payload)
         const { data } = await httpService.post(transactionEndpoint, payload)
         return data
     },
