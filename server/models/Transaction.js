@@ -6,9 +6,10 @@ const schema = new Schema(
         account: { type: Schema.Types.ObjectId, ref: "Account", required: true },
         amount: { type: Number, required: true },
         comment: { type: String, required: true },
+        userId: { type: Schema.Types.ObjectId, ref: "User", required: true },
     },
     {
-        timestamps: { createdAt: "created_at" }
+        timestamps: { createdAt: "created_at" },
     }
 )
 

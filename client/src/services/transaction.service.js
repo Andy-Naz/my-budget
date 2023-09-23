@@ -14,7 +14,8 @@ const transactionService = {
         return data
     },
     createTransaction: async (payload) => {
-        const { data } = await httpService.put(transactionEndpoint + payload._id, payload)
+        console.log(payload)
+        const { data } = await httpService.post(transactionEndpoint, payload)
         return data
     },
     removeTransaction: async (transactionId) => {

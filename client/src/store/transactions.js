@@ -34,7 +34,7 @@ const transactionsSlice = createSlice({
         },
         transactionsCleared: (state, action) => {
             state.entities = null
-        }
+        },
     },
 })
 
@@ -77,15 +77,8 @@ export const loadTransactionsDemoList = () => async (dispatch) => {
 
 export const createTransaction = (data) => async (dispatch) => {
     dispatch(transactionCreateRequested())
-    const currentUserId = localStorageService.getUserId()
-    const transaction = {
-        ...data,
-        _id: nanoid(),
-        created_at: Date.now(),
-        userId: currentUserId,
-    }
     try {
-        const { content } = await transactionService.createTransaction(transaction)
+        const { content } = await transactionService.createTransaction(data)
         dispatch(transactionCreated(content))
     } catch (error) {
         dispatch(transactionCreateFailed(error.message))
@@ -95,7 +88,7 @@ export const createTransaction = (data) => async (dispatch) => {
 export const removeTransaction = (id) => async (dispatch) => {
     try {
         const { content } = await transactionService.removeTransaction(id)
-        if (content === null) {
+        if (!content) {
             dispatch(transactionRemoved(id))
         }
     } catch (error) {
@@ -118,7 +111,6 @@ export function updateTransaction(payload, transactionId) {
 export const clearTransaction = () => (dispatch) => {
     dispatch(transactionsCleared())
 }
-
 
 export const getTransactions = () => (state) => state.transactions.entities
 export const getTransactionsLoadingStatus = () => (state) => state.transactions.isLoading
