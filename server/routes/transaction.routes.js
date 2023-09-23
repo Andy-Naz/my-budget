@@ -13,7 +13,7 @@ router
             res.send(list)
         } catch (e) {
             res.status(500).json({
-                message: "На сервере произошла ошибка. Попробуйте позже"
+                message: "На сервере произошла ошибка. Попробуйте позже",
             })
         }
     })
@@ -21,12 +21,12 @@ router
         try {
             const newTransaction = await Transaction.create({
                 ...req.body,
-                userId: req.user._id
+                userId: req.user._id,
             })
             res.status(201).send(newTransaction)
         } catch (e) {
             res.status(500).json({
-                message: "На сервере произошла ошибка. Попробуйте позже"
+                message: "На сервере произошла ошибка. Попробуйте позже",
             })
         }
     })
@@ -44,7 +44,25 @@ router.delete("/:transactionId", auth, async (req, res) => {
         }
     } catch (e) {
         res.status(500).json({
-            message: "На сервере произошла ошибка. Попробуйте позже"
+            message: "На сервере произошла ошибка. Попробуйте позже",
+        })
+    }
+})
+
+router.patch("/:transactionId", auth, async (req, res) => {
+    try {
+        const { transactionId } = req.params
+        console.log(transactionId)
+        console.log(req.body._id)
+        if (transactionId === req.body._id) {
+            const updatedTransaction = await Transaction.findByIdAndUpdate(transactionId, req.body, { new: true })
+            res.send(updatedTransaction)
+        } else {
+            res.status(401).json({ message: "Unauthorized" })
+        }
+    } catch (e) {
+        res.status(500).json({
+            message: "На сервере произошла ошибка. Попробуйте позже",
         })
     }
 })
