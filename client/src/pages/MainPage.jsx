@@ -30,6 +30,9 @@ const MainPage = () => {
                         ))}
                     </div>
                 </div>
+                <div className="container mx-auto bg-gray-500 px-10 w-50">
+                    hello world
+                </div>
             </>
         )
     }
