@@ -60,34 +60,53 @@ const LoginForm = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <TextField
-                label="Электронная почта"
-                name="email"
-                value={data.email}
-                onChange={handleChange}
-                error={errors.email}
-            />
-            <TextField
-                label="Пароль"
-                type="password"
-                name="password"
-                value={data.password}
-                onChange={handleChange}
-                error={errors.password}
-            />
+        <>
+            <h2 className="mt-10 mb-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+                Вход в аккаунт
+            </h2>
+            <form onSubmit={handleSubmit} className="space-y-6">
+                <TextField
+                    label="Электронная почта"
+                    name="email"
+                    value={data.email}
+                    onChange={handleChange}
+                    error={errors.email}
+                />
+                <TextField
+                    label="Пароль"
+                    type="password"
+                    name="password"
+                    value={data.password}
+                    onChange={handleChange}
+                    error={errors.password}
+                />
 
-            {loginError && <p className="text-danger">{loginError}</p>}
+                {loginError && <p className="text-danger">{loginError}</p>}
 
-            <div>
-                Нет учётной записи?
-                <Link to="/auth/signUp">Зарегистрироваться</Link>
-            </div>
+                {/* <div>
+                    Нет учётной записи?
+                    <Link to="/auth/signUp" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Зарегистрироваться</Link>
+                </div> */}
 
-            <button type="submit" disabled={!isValid} className="btn btn-primary w-100 mx-auto">
-                Отправить
-            </button>
-        </form>
+                <button
+                    type="submit"
+                    disabled={!isValid}
+                    className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                >
+                    Войти
+                </button>
+
+                <p className="mt-10 text-center text-sm text-gray-500">
+                    Нет учётной записи?{" "}
+                    <Link to="/auth/signUp" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+                        Зарегистрироваться
+                    </Link>
+                </p>
+                {/* <button type="submit" disabled={!isValid} className="btn btn-primary w-100 mx-auto">
+                    Отправить
+                </button> */}
+            </form>
+        </>
     )
 }
 

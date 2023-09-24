@@ -79,33 +79,53 @@ const RegisterForm = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <TextField
-                label="Электронная почта"
-                name="email"
-                value={data.email}
-                onChange={handleChange}
-                error={errors.email}
-            />
-            <TextField
-                label="Пароль"
-                type="password"
-                name="password"
-                value={data.password}
-                onChange={handleChange}
-                error={errors.password}
-            />
-            <TextField label="Имя" name="name" value={data.name} onChange={handleChange} error={errors.name} />
+        <>
+            <h2 className="mt-10 mb-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+                Регистрация
+            </h2>
+            <form onSubmit={handleSubmit} className="space-y-6">
+                <TextField label="Имя" name="name" value={data.name} onChange={handleChange} error={errors.name} />
+                <TextField
+                    label="Электронная почта"
+                    name="email"
+                    value={data.email}
+                    onChange={handleChange}
+                    error={errors.email}
+                />
+                <TextField
+                    label="Пароль"
+                    type="password"
+                    name="password"
+                    value={data.password}
+                    onChange={handleChange}
+                    error={errors.password}
+                />
 
-            <div>
-                Уже зарегистрированы?
-                <Link to="/auth/signIn">Войти</Link>
-            </div>
+                <button
+                    type="submit"
+                    disabled={!isValid}
+                    className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                >
+                    Зарегистрироваться
+                </button>
 
-            <button className="btn btn-primary w-100 mx-auto" type="submit" disabled={!isValid}>
-                Submit
-            </button>
-        </form>
+                <p className="mt-10 text-center text-sm text-gray-500">
+                    Уже есть аккаунт?{" "}
+                    <Link to="/auth/signIn" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+                        Войти
+                    </Link>
+                </p>
+
+                {/* <div>
+                        Уже зарегистрированы?
+                        <Link to="/auth/signIn">Войти</Link>
+                    </div>
+
+                    <button className="btn btn-primary w-100 mx-auto" type="submit" disabled={!isValid}>
+                        Submit
+                    </button> */}
+            </form>
+        </>
     )
 }
 

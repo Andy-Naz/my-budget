@@ -3,11 +3,9 @@ import { Outlet } from "react-router-dom"
 
 function AuthLayout() {
     return (
-        <div className="container mt-5">
-            <div className="row">
-                <div className="col-md-6 offset-md-3 shadow p-4">
-                    <Outlet />
-                </div>
+        <div className="flex min-h-full flex-1 flex-col justify-center p-6 lg:px-8">
+            <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+                <Outlet />
             </div>
         </div>
     )
