@@ -10,9 +10,9 @@ import {
 
 const Dashboard = () => {
     return (
-        <div className="w-full relative flex ct-docs-disable-sidebar-content overflow-x-hidden">
+        <div className="w-full relative flex ct-docs-disable-sidebar-content overflow-x-hidden mt-4">
             <div className="relative bg-blueGray-100 w-full">
-                <div className="relative pt-16 pb-32 bg-blue-400">
+                <div className="relative pt-16 pb-32 bg-indigo-400">
                     <div className="px-4 md:px-6 mx-auto w-full">
                         <div>
                             <div className="flex flex-wrap">
@@ -124,7 +124,7 @@ const Dashboard = () => {
                 <div className="px-4 md:px-6 mx-auto w-full -mt-24">
                     <div className="flex flex-wrap">
                         <div className="w-full xl:w-8/12 px-4">
-                            <div className="relative flex flex-col min-w-0 break-words w-full mb-8 shadow-lg rounded-lg bg-blue-700">
+                            <div className="relative flex flex-col min-w-0 break-words w-full mb-8 shadow-lg rounded-lg bg-slate-600">
                                 <div className="rounded-t mb-0 px-4 py-3 bg-transparent">
                                     <div className="flex flex-wrap items-center">
                                         <div className="relative w-full max-w-full flex-grow flex-1">

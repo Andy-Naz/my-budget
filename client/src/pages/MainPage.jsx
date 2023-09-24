@@ -22,6 +22,9 @@ const MainPage = () => {
 
         return (
             <>
+                <div className="container mx-auto max-w-7xl">
+                    <Dashboard />
+                </div>
                 <div className="container mt-3">
                     <div className="row align-items-start">
                         {widgetTitles.map((widgetTitle) => (
@@ -30,9 +33,6 @@ const MainPage = () => {
                             </div>
                         ))}
                     </div>
-                </div>
-                <div className="container mx-auto max-w-7xl">
-                    <Dashboard />
                 </div>
             </>
         )
