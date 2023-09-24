@@ -5,6 +5,7 @@ import { getAccounts, getAccountsLoadingStatus } from "../store/accounts"
 import { getTransactions, getTransactionsLoadingStatus } from "../store/transactions"
 import { calculate } from "../utils/calculate"
 import { getCategories, getCategoriesLoadingStatus } from "../store/categories"
+import Dashboard from "../components/ui/Dashboard"
 
 const MainPage = () => {
     const accounts = useSelector(getAccounts())
@@ -30,8 +31,8 @@ const MainPage = () => {
                         ))}
                     </div>
                 </div>
-                <div className="container mx-auto bg-gray-500 px-10 w-50">
-                    hello world
+                <div className="container mx-auto max-w-7xl">
+                    <Dashboard />
                 </div>
             </>
         )

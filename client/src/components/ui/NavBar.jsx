@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { useSelector } from "react-redux"
 import { NavLink } from "react-router-dom"
 import { getIsLoggedIn } from "../../store/users"
@@ -6,14 +6,25 @@ import NavProfile from "./NavProfile"
 import { Disclosure, Menu } from "@headlessui/react"
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline"
 
+const navigationList = [
+    { name: "Дашборд", to: "/", current: true },
+    { name: "Транзакции", to: "history", current: false },
+    { name: "Тест", to: "test", current: false },
+]
+
 const NavBar = () => {
     const isLoggedIn = useSelector(getIsLoggedIn())
+    const [navigation, setNavigation] = useState(navigationList)
 
-    const navigation = [
-        { name: "Дашборд", to: "/", current: true },
-        { name: "Транзакции", to: "history", current: false },
-        { name: "Тест", to: "test", current: false },
-    ]
+    const setMarkNavigation = (name) => {
+        const newNavigation = navigation.map((nav) => {
+            if (nav.name === name) {
+                return { ...nav, current: true }
+            }
+            return { ...nav, current: false }
+        })
+        setNavigation(newNavigation)
+    }
 
     function classNames(...classes) {
         return classes.filter(Boolean).join(" ")
@@ -57,6 +68,7 @@ const NavBar = () => {
                                                         : "text-gray-300 hover:bg-gray-700 hover:text-white",
                                                     "rounded-md px-3 py-2 text-sm font-medium"
                                                 )}
+                                                onClick={() => setMarkNavigation(item.name)}
                                                 aria-current={item.current ? "page" : undefined}
                                             >
                                                 {item.name}
