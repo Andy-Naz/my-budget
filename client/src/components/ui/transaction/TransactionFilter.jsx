@@ -12,7 +12,7 @@ const TransactionFilter = ({ accounts, categories, valueProperty, contentPropert
 
     const handleCheckboxChange = (id) => {
         const updatedCheckboxAccount = selectedCheckboxAccount.includes(id)
-            ? selectedCheckboxAccount.filter((c) => c !== category)
+            ? selectedCheckboxAccount.filter((c) => c !== id)
             : [...selectedCheckboxAccount, id]
         setSelectedCheckboxAccount(updatedCheckboxAccount)
     }
