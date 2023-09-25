@@ -84,11 +84,12 @@ const RegisterForm = () => {
                 Регистрация
             </h2>
             <form onSubmit={handleSubmit} className="space-y-6">
-                <TextField label="Имя" name="name" value={data.name} onChange={handleChange} error={errors.name} />
+                <TextField label="Имя" name="name" value={data.name} placeholder="Ваше имя" onChange={handleChange} error={errors.name} />
                 <TextField
                     label="Электронная почта"
                     name="email"
                     value={data.email}
+                    placeholder="Ваш Email"
                     onChange={handleChange}
                     error={errors.email}
                 />
@@ -97,6 +98,7 @@ const RegisterForm = () => {
                     type="password"
                     name="password"
                     value={data.password}
+                    placeholder="8+ Символов, 1 Заглавная буква"
                     onChange={handleChange}
                     error={errors.password}
                 />
