@@ -2,7 +2,6 @@ import React from "react"
 import { useSelector } from "react-redux"
 import { getCurrentUserData } from "../store/users"
 import { Link } from "react-router-dom"
-import Avatar from "../assets/images/avatar.png"
 
 const UserPage = () => {
     const currentUser = useSelector(getCurrentUserData())
@@ -16,7 +15,7 @@ const UserPage = () => {
                             <div className="relative">
                                 <img
                                     alt="Аватар"
-                                    src={Avatar}
+                                    src={currentUser.image}
                                     className="shadow-xl rounded-full border-none -mt-12 w-24"
                                 />
                             </div>

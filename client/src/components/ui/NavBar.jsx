@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom"
 import { getIsLoggedIn } from "../../store/users"
 import NavProfile from "./NavProfile"
 import { Disclosure, Menu } from "@headlessui/react"
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline"
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline"
 import Logo from "../../assets/images/logo.png"
 import TransactionAddButton from "./transaction/TransactionAddButton"
 

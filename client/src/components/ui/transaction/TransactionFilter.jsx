@@ -31,7 +31,68 @@ const TransactionFilter = ({ accounts, categories, valueProperty, contentPropert
 
     return (
         <>
-            <h3>Фильтр</h3>
+            <div className="flex items-center justify-center">
+                <h3 className="mt-1 text-lg leading-6 text-gray-600">Фильтры</h3>
+            </div>
+            <hr className="mt-4" />
+            <fieldset>
+                <legend className="text-sm font-semibold leading-6 text-gray-900">По счетам</legend>
+                <div className="mt-6 space-y-6">
+                    {categories.map((category) => (
+                        <div key={category[valueProperty]} className="flex items-center gap-x-3">
+                            <div className="flex h-6 items-center">
+                                <input
+                                    type="radio"
+                                    id={category[valueProperty] + "-radio"}
+                                    value={category[valueProperty]}
+                                    checked={selectedRadioCategory === category[valueProperty]}
+                                    onChange={() => handleRadioChange(category[valueProperty])}
+                                />
+                            </div>
+                            <div className="text-sm leading-6">
+                                <label htmlFor={category[valueProperty] + "-radio"}>{category[contentProperty]}</label>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </fieldset>
+            <hr className="mt-4" />
+            <fieldset>
+                <legend className="text-sm font-semibold leading-6 text-gray-900">По категориям</legend>
+                <div className="mt-6 space-y-6">
+                    {accounts.map((account) => (
+                        <div key={account[valueProperty]} className="relative flex gap-x-3">
+                            <div className="flex h-6 items-center">
+                                <input
+                                    type="checkbox"
+                                    id={account[valueProperty] + "-checkbox"}
+                                    value={account[valueProperty]}
+                                    checked={selectedCheckboxAccount.includes(account[valueProperty])}
+                                    onChange={() => handleCheckboxChange(account[valueProperty])}
+                                />
+                            </div>
+                            <div className="text-sm leading-6">
+                                <label htmlFor={account[valueProperty] + "-checkbox"}>{account[contentProperty]}</label>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </fieldset>
+            <div className="flex flex-col mt-4 px-4">
+                <button
+                    onClick={applyFilter}
+                    className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mb-2"
+                >
+                    Применить
+                </button>
+                <button
+                    onClick={clearFilter}
+                    className="flex w-full justify-center rounded-md bg-slate-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-slate-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-600"
+                >
+                    Очистить
+                </button>
+            </div>
+            {/* <h3>Фильтр</h3>
             <div>
                 <label>Radio Options:</label>
                 {categories.map((category) => (
@@ -63,31 +124,12 @@ const TransactionFilter = ({ accounts, categories, valueProperty, contentPropert
                 ))}
             </div>
 
-            {/* <RadioField
-                options={categories}
-                name="category"
-                onChange={onChange}
-                label="Категории"
-                valueProperty={valueProperty}
-                contentProperty={contentProperty}
-                checkedCategory={checkedCategory}
-            />
-            <CheckBoxField
-                options={accounts}
-                name="accounts"
-                onChange={onChange}
-                label="Счета"
-                valueProperty={valueProperty}
-                contentProperty={contentProperty}
-                checkedAccounts={checkedAccounts}
-            /> */}
-
             <button onClick={applyFilter} className="btn btn-warning mt-2">
                 Применить
             </button>
             <button onClick={clearFilter} className="btn btn-secondary mt-2">
                 Очистить
-            </button>
+            </button> */}
         </>
     )
 }

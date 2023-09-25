@@ -4,6 +4,7 @@ import Account from "../Account"
 import Category from "../Category"
 import Date from "../DateTransaction"
 import Table from "../../common/table/table"
+import { PencilIcon, TrashIcon } from "@heroicons/react/24/outline"
 
 const TransactionTable = ({ transactions, onSort, selectedSort, onRemove, ...rest }) => {
     const columns = {
@@ -12,27 +13,23 @@ const TransactionTable = ({ transactions, onSort, selectedSort, onRemove, ...res
         category: { path: "category", name: "Категория", component: (transaction) => <Category data={transaction} /> },
         comment: { path: "comment", name: "Комментарий" },
         amount: { path: "amount", name: "Сумма" },
-        edit: {
-            path: "edit",
+        tools: {
+            path: "tools",
             component: (transaction) => (
-                <Link to={`/transaction/${transaction._id}`}>
-                    <button type="button" className="btn btn-outline-success ms-1" title="Редактировать">
-                        <i className="bi bi-pencil-square"></i>
-                    </button>
-                </Link>
-            ),
-        },
-        remove: {
-            path: "remove",
-            component: (transaction) => (
-                <button
-                    type="button"
-                    className="btn btn-outline-danger ms-1"
-                    title="Удалить"
-                    onClick={() => onRemove(transaction._id)}
-                >
-                    <i className="bi bi-trash3-fill"></i>
-                </button>
+                <div className="flex">
+                    <div>
+                        <Link to={`/transaction/${transaction._id}`}>
+                            <PencilIcon className="w-4 hover:text-green-600 mr-2" />
+                        </Link>
+                    </div>
+                    <div>
+                        <TrashIcon
+                            role="button"
+                            className="w-4 hover:text-red-600"
+                            onClick={() => onRemove(transaction._id)}
+                        />
+                    </div>
+                </div>
             ),
         },
     }

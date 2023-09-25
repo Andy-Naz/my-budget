@@ -1,4 +1,5 @@
 import React from "react"
+import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline"
 
 const TableHeader = ({ onSort, selectedSort, columns }) => {
     const handleSort = (item) => {
@@ -11,13 +12,13 @@ const TableHeader = ({ onSort, selectedSort, columns }) => {
 
     const renderSortDirectionArrow = (item) => {
         if (selectedSort.path === item) {
-            return selectedSort.order === "asc" ? "bi bi-caret-up-fill" : "bi bi-caret-down-fill"
+            return selectedSort.order === "asc" ? <ChevronUpIcon /> : <ChevronDownIcon />
         }
         return ""
     }
 
     return (
-        <thead>
+        <thead className="border-b font-medium dark:border-neutral-500">
             <tr>
                 {Object.keys(columns).map((column) => (
                     <th
@@ -25,9 +26,12 @@ const TableHeader = ({ onSort, selectedSort, columns }) => {
                         onClick={columns[column].path ? () => handleSort(columns[column].path) : undefined}
                         {...{ role: columns[column].path && "button" }}
                         scope="col"
+                        className="px-6 py-4"
                     >
-                        {columns[column].name}
-                        <i className={renderSortDirectionArrow(columns[column].path)}></i>
+                        <div className="flex">
+                            <span>{columns[column].name}</span>
+                            <span className="flex w-4">{renderSortDirectionArrow(columns[column].path)}</span>
+                        </div>
                     </th>
                 ))}
             </tr>
