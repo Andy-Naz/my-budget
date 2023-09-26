@@ -9,6 +9,7 @@ import Dashboard from "../components/ui/Dashboard"
 import { calculateTotal } from "../utils/calculateTotal"
 import { transformDemoData } from "../utils/transformDemoData"
 import Loading from "../components/common/loading/Loading"
+import { calculateChart } from "../utils/calculateChart"
 
 const MainPage = () => {
     const accounts = useSelector(getAccounts())
@@ -23,12 +24,14 @@ const MainPage = () => {
         const calculateAccounts = calculate(transactions, accounts, categories)
         const widgetTitles = ["Счета", "Доходы", "Расходы"]
 
-        const calculateSummary = calculateTotal(transactions, categories)
+        const totalData = calculateTotal(transactions, categories)
+
+        const chartData = calculateChart(transactions, categories)
 
         return (
             <>
                 <div className="container mx-auto max-w-7xl">
-                    <Dashboard summary={calculateSummary} />
+                    <Dashboard summary={totalData} chart={chartData} />
                 </div>
                 <div className="container mt-3">
                     <div className="row align-items-start">

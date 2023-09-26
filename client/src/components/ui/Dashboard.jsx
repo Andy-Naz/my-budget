@@ -7,8 +7,9 @@ import {
     ArrowUpOnSquareIcon,
     CircleStackIcon,
 } from "@heroicons/react/24/outline"
+import ChartOne from "./dashboard/ChartOne"
 
-const Dashboard = ({ summary }) => {
+const Dashboard = ({ summary, chart }) => {
     return (
         <div className="w-full relative flex ct-docs-disable-sidebar-content overflow-x-hidden mt-4">
             <div className="relative bg-blueGray-100 w-full">
@@ -134,21 +135,10 @@ const Dashboard = ({ summary }) => {
                                 <div className="rounded-t mb-0 px-4 py-3 bg-transparent">
                                     <div className="flex flex-wrap items-center">
                                         <div className="relative w-full max-w-full flex-grow flex-1">
-                                            <h6 className="uppercase mb-1 text-xs font-semibold text-blueGray-200">
-                                                Overview
-                                            </h6>
-                                            <h2 className="text-xl font-semibold text-white">Sales value</h2>
+                                            <h6 className="uppercase mb-1 text-xs font-semibold text-white">Обзор</h6>
+                                            <h2 className="text-xl font-semibold text-white mb-2">Денежные потоки</h2>
+                                            <ChartOne chart={chart} />
                                         </div>
-                                    </div>
-                                </div>
-                                <div className="p-4 flex-auto">
-                                    <div className="relative h-350-px">
-                                        {/* <canvas
-                                            width="496"
-                                            height="291"
-                                            style="display: block; box-sizing: border-box; height: 350px; width: 595.5px;"
-                                            id="line-chart"
-                                        ></canvas> */}
                                     </div>
                                 </div>
                             </div>
@@ -159,9 +149,9 @@ const Dashboard = ({ summary }) => {
                                     <div className="flex flex-wrap items-center">
                                         <div className="relative w-full max-w-full flex-grow flex-1">
                                             <h6 className="uppercase mb-1 text-xs font-semibold text-blueGray-500">
-                                                Performance
+                                                Транзакции
                                             </h6>
-                                            <h2 className="text-xl font-semibold text-blueGray-800">Total orders</h2>
+                                            <h2 className="text-xl font-semibold text-blueGray-800">Общая динамика</h2>
                                         </div>
                                     </div>
                                 </div>
