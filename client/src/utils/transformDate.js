@@ -1,6 +1,4 @@
-import React from "react"
-
-const DateTransaction = ({ data }) => {
+export const transformDate = ({ data }) => {
     const date = new Date(data.created_at)
     const year = date.getFullYear()
     let month = date.getMonth() + 1
@@ -15,5 +13,3 @@ const DateTransaction = ({ data }) => {
     const formatDate = `${day}.${month}.${year}`
     return <p>{formatDate}</p>
 }
-
-export default DateTransaction

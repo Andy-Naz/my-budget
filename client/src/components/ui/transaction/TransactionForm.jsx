@@ -24,7 +24,9 @@ const TransactionForm = () => {
         category: "",
         amount: "",
         comment: "",
+        date: "",
     })
+
     const [errors, setErrors] = useState({})
 
     const handleChange = (target) => {
@@ -51,6 +53,11 @@ const TransactionForm = () => {
             },
             isPositiveNumber: {
                 message: "Число должно быть положительным",
+            },
+        },
+        date: {
+            isRequired: {
+                message: "Необходимо установить дату",
             },
         },
     }
@@ -92,6 +99,18 @@ const TransactionForm = () => {
                     <form onSubmit={handleSubmit}>
                         <div className="mt-6 border-t border-gray-100">
                             <dl className="divide-y divide-gray-100">
+                                <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                    <dt className="text-sm font-medium leading-6 text-gray-900">Дата</dt>
+                                    <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                                        <TextField
+                                            name="date"
+                                            type="date"
+                                            value={data.date}
+                                            onChange={handleChange}
+                                            error={errors.date}
+                                        />
+                                    </dd>
+                                </div>
                                 <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                                     <dt className="text-sm font-medium leading-6 text-gray-900">Счет</dt>
                                     <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">

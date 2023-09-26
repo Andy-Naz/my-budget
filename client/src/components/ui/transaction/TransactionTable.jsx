@@ -2,7 +2,7 @@ import React from "react"
 import { Link } from "react-router-dom"
 import Account from "../Account"
 import Category from "../Category"
-import Date from "../DateTransaction"
+import Date from "./TransactionDate"
 import Table from "../../common/table/table"
 import { PencilIcon, TrashIcon } from "@heroicons/react/24/outline"
 

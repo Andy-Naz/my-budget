@@ -7,6 +7,7 @@ const schema = new Schema(
         amount: { type: Number, required: true },
         comment: { type: String },
         userId: { type: Schema.Types.ObjectId, ref: "User", required: true },
+        date: { type: String, required: true },
     },
     {
         timestamps: { createdAt: "created_at" },

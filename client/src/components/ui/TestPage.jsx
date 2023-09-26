@@ -12,6 +12,17 @@ const TestPage = () => {
 
     const [filteredProducts, setFilteredProducts] = useState(products)
 
+    const [date, setDate] = useState()
+
+    const handleChange = ({ target }) => {
+        console.log(target.value)
+        console.log(target.valueAsNumber)
+
+        setDate((prevState) => ({ ...prevState, [target.name]: target.value }))
+    }
+
+    // console.log(date)
+
     const categories = ["Electronics", "Clothing", "Furniture"]
     const groups = ["Man", "Woman"]
 
@@ -32,19 +43,22 @@ const TestPage = () => {
     }
 
     return (
-        <div>
-            <h1>Online Store</h1>
-            <TestFilter categories={categories} groups={groups} onFilter={handleFilter} />
+        <>
+            <input type="date" onChange={handleChange}></input>
+            <div className="mt-8">
+                <h1>Online Store</h1>
+                <TestFilter categories={categories} groups={groups} onFilter={handleFilter} />
 
-            <h2>Filtered Products</h2>
-            <ul>
-                {filteredProducts.map((product) => (
-                    <li key={product.id}>
-                        {product.name} - {product.category}
-                    </li>
-                ))}
-            </ul>
-        </div>
+                <h2>Filtered Products</h2>
+                <ul>
+                    {filteredProducts.map((product) => (
+                        <li key={product.id}>
+                            {product.name} - {product.category}
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        </>
     )
 }
 

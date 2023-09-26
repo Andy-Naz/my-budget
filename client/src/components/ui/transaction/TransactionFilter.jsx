@@ -6,8 +6,6 @@ const TransactionFilter = ({ accounts, categories, valueProperty, contentPropert
     const [selectedRadioCategory, setSelectedRadioCategory] = useState("")
     const [selectedCheckboxAccount, setSelectedCheckboxAccount] = useState([])
 
-    console.log(selectedRadioCategory, selectedCheckboxAccount)
-
     const handleRadioChange = (id) => {
         setSelectedRadioCategory(id)
     }
