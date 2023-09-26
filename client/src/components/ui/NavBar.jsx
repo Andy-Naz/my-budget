@@ -1,9 +1,9 @@
 import React, { useState } from "react"
 import { useSelector } from "react-redux"
-import { NavLink } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { getIsLoggedIn } from "../../store/users"
 import NavProfile from "./NavProfile"
-import { Disclosure, Menu } from "@headlessui/react"
+import { Disclosure } from "@headlessui/react"
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline"
 import Logo from "../../assets/images/logo.png"
 import TransactionAddButton from "./transaction/TransactionAddButton"
@@ -57,7 +57,7 @@ const NavBar = () => {
                                 <div className="hidden sm:ml-6 sm:block">
                                     <div className="flex space-x-4">
                                         {navigation.map((item) => (
-                                            <NavLink
+                                            <Link
                                                 key={item.name}
                                                 to={item.to}
                                                 className={classNames(
@@ -70,7 +70,7 @@ const NavBar = () => {
                                                 aria-current={item.current ? "page" : undefined}
                                             >
                                                 {item.name}
-                                            </NavLink>
+                                            </Link>
                                         ))}
                                     </div>
                                 </div>
@@ -93,15 +93,13 @@ const NavBar = () => {
                                         <NavProfile />
                                     </>
                                 ) : (
-                                    <NavLink to="auth/signIn" className="nav-link" aria-current="page">
-                                        <Menu as="div" className="relative ml-3">
-                                            <div>
-                                                <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 text-white">
-                                                    Войти
-                                                </Menu.Button>
-                                            </div>
-                                        </Menu>
-                                    </NavLink>
+                                    <Link to="auth/signIn" className="nav-link" aria-current="page">
+                                        <div className="relative ml-3">
+                                            <button className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
+                                                Войти
+                                            </button>
+                                        </div>
+                                    </Link>
                                 )}
                             </div>
                         </div>
@@ -110,7 +108,7 @@ const NavBar = () => {
                     <Disclosure.Panel className="sm:hidden">
                         <div className="space-y-1 px-2 pb-3 pt-2">
                             {navigation.map((item) => (
-                                <NavLink key={item.name} to={item.to}>
+                                <Link key={item.name} to={item.to}>
                                     <Disclosure.Button
                                         className={classNames(
                                             item.current
@@ -122,7 +120,7 @@ const NavBar = () => {
                                     >
                                         {item.name}
                                     </Disclosure.Button>
-                                </NavLink>
+                                </Link>
                             ))}
                         </div>
                     </Disclosure.Panel>
@@ -151,26 +149,26 @@ const NavBar = () => {
     //                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
     //                     <ul className="navbar-nav me-auto mb-lg-0">
     //                         <li className="nav-item d-flex align-items-center">
-    //                             <NavLink to="/" className="nav-link" aria-current="page">
+    //                             <Link to="/" className="nav-link" aria-current="page">
     //                                 Главная
-    //                             </NavLink>
+    //                             </Link>
     //                         </li>
     //                         <li className="nav-item d-flex align-items-center">
-    //                             <NavLink to="history" className="nav-link" aria-current="page">
+    //                             <Link to="history" className="nav-link" aria-current="page">
     //                                 История
-    //                             </NavLink>
+    //                             </Link>
     //                         </li>
     //                         <li className="nav-item d-flex align-items-center">
-    //                             <NavLink to="test" className="nav-link" aria-current="page">
+    //                             <Link to="test" className="nav-link" aria-current="page">
     //                                 Тест
-    //                             </NavLink>
+    //                             </Link>
     //                         </li>
     //                         {isLoggedIn  ? (
     //                             <NavProfile />
     //                         ) : (
-    //                             <NavLink to="auth/signIn" className="nav-link" aria-current="page">
+    //                             <Link to="auth/signIn" className="nav-link" aria-current="page">
     //                                 Войти
-    //                             </NavLink>
+    //                             </Link>
     //                         )}
     //                     </ul>
 
