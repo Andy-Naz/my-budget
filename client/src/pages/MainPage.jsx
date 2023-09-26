@@ -6,6 +6,9 @@ import { getTransactions, getTransactionsLoadingStatus } from "../store/transact
 import { calculate } from "../utils/calculate"
 import { getCategories, getCategoriesLoadingStatus } from "../store/categories"
 import Dashboard from "../components/ui/Dashboard"
+import { calculateTotal } from "../utils/calculateTotal"
+import { transformDemoData } from "../utils/transformDemoData"
+import Loading from "../components/common/loading/Loading"
 
 const MainPage = () => {
     const accounts = useSelector(getAccounts())
@@ -20,10 +23,12 @@ const MainPage = () => {
         const calculateAccounts = calculate(transactions, accounts, categories)
         const widgetTitles = ["Счета", "Доходы", "Расходы"]
 
+        const calculateSummary = calculateTotal(transactions, categories)
+
         return (
             <>
                 <div className="container mx-auto max-w-7xl">
-                    <Dashboard />
+                    <Dashboard summary={calculateSummary} />
                 </div>
                 <div className="container mt-3">
                     <div className="row align-items-start">
@@ -37,7 +42,7 @@ const MainPage = () => {
             </>
         )
     }
-    return "Loading..."
+    return <Loading />
 }
 
 export default MainPage

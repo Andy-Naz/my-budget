@@ -2,8 +2,9 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getCurrentUserId, getIsLoggedIn, getUsersLoadingStatus, loadUsersList } from "../../../store/users"
 import { loadTransactionsDemoList, loadTransactionsList } from "../../../store/transactions"
-import { loadAccountsList } from "../../../store/accounts"
-import { loadCategoriesList } from "../../../store/categories"
+import { getAccounts, getAccountsLoadingStatus, loadAccountsList } from "../../../store/accounts"
+import { getCategories, getCategoriesLoadingStatus, loadCategoriesList } from "../../../store/categories"
+import Loading from "../../common/loading/Loading"
 
 const AppLoader = ({ children }) => {
     const dispatch = useDispatch()
@@ -19,15 +20,21 @@ const AppLoader = ({ children }) => {
         }
     }, [isLoggedIn])
 
+    const accounts = useSelector(getAccounts())
+    const categories = useSelector(getCategories())
+
+    const accountsLoading = useSelector(getAccountsLoadingStatus())
+    const categoriesLoading = useSelector(getCategoriesLoadingStatus())
+
     useEffect(() => {
         if (currentUserId) {
             dispatch(loadTransactionsList(currentUserId))
-        } else {
-            dispatch(loadTransactionsDemoList())
+        } else if (!accountsLoading && !categoriesLoading) {
+            dispatch(loadTransactionsDemoList(accounts, categories))
         }
-    }, [currentUserId])
+    }, [currentUserId, accountsLoading, categoriesLoading])
 
-    if (usersStatusLoading) return "Loading..."
+    if (usersStatusLoading) return <Loading />
     return children
 }
 

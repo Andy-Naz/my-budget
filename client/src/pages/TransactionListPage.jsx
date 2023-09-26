@@ -27,11 +27,7 @@ const TransactionsListPage = () => {
     const [searchQuery, setSearchQuery] = useState("")
     const [sortBy, setSortBy] = useState({ path: "name", order: "asc" })
 
-    const [data, setData] = useState({
-        rows: "5",
-        category: "5310f6f217c1",
-        accounts: [],
-    })
+    const [data, setData] = useState({ rows: "5" })
     const [filteredTransactions, setFilteredTransactions] = useState()
 
     const rowsList = [
@@ -94,7 +90,7 @@ const TransactionsListPage = () => {
 
     if (filteredTransactions) {
         if (searchQuery) {
-            filteredTransactions.filter((transaction) =>
+            const arr = filteredTransactions.filter((transaction) =>
                 transaction.comment.toLowerCase().includes(searchQuery.toLowerCase())
             )
         }
@@ -123,9 +119,16 @@ const TransactionsListPage = () => {
                         <div className="flex md:flex-row flex-col justify-between">
                             <div className="flex flex-row justify-start md:w-4/12 w-full mt-2">
                                 <div className="flex items-center justify-center">
-                                    <p className="mr-4 align-middle">Транзакций на странице</p>
+                                    <p className="mr-4 align-middle">Показать</p>
                                 </div>
-                                <SelectField options={rowsList} name="rows" onChange={handleChange} value={data.rows} />
+                                <div className="-mt-2">
+                                    <SelectField
+                                        options={rowsList}
+                                        name="rows"
+                                        onChange={handleChange}
+                                        value={data.rows}
+                                    />
+                                </div>
                             </div>
                             <div className="flex flex-row justify-end md:w-4/12 w-full mt-2">
                                 <div className="flex items-center justify-center">
@@ -134,7 +137,7 @@ const TransactionsListPage = () => {
                                 <input
                                     className="block w-full rounded-md border-1 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     type="search"
-                                    placeholder="Введите текст..."
+                                    placeholder="По комментарию..."
                                     value={searchQuery}
                                     onChange={handleSearchQuery}
                                 />

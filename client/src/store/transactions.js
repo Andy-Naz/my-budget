@@ -1,7 +1,6 @@
 import { createAction, createSlice } from "@reduxjs/toolkit"
 import transactionService from "../services/transaction.service"
-import { nanoid } from "nanoid"
-import localStorageService from "../services/localStorage.service"
+import { transformDemoData } from "../utils/transformDemoData"
 
 const transactionsSlice = createSlice({
     name: "transactions",
@@ -65,11 +64,12 @@ export const loadTransactionsList = (userId) => async (dispatch) => {
     }
 }
 
-export const loadTransactionsDemoList = () => async (dispatch) => {
+export const loadTransactionsDemoList = (accounts, categories) => async (dispatch) => {
     dispatch(transactionsRequested())
     try {
         const { content } = await transactionService.getTransactionsDemo()
-        dispatch(transactionsReceived(content))
+        const transformContent = transformDemoData(content, accounts, categories)
+        dispatch(transactionsReceived(transformContent))
     } catch (error) {
         dispatch(transactionsRequestFailed(error.message))
     }

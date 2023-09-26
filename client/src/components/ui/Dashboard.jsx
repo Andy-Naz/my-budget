@@ -8,7 +8,7 @@ import {
     CircleStackIcon,
 } from "@heroicons/react/24/outline"
 
-const Dashboard = () => {
+const Dashboard = ({ summary }) => {
     return (
         <div className="w-full relative flex ct-docs-disable-sidebar-content overflow-x-hidden mt-4">
             <div className="relative bg-blueGray-100 w-full">
@@ -24,7 +24,9 @@ const Dashboard = () => {
                                                     <h5 className="text-blueGray-400 uppercase font-bold text-xs">
                                                         Баланс
                                                     </h5>
-                                                    <span className="font-bold text-xl">155 000</span>
+                                                    <span className="font-bold text-xl">
+                                                        {summary.balance.toLocaleString()}
+                                                    </span>
                                                 </div>
                                                 <div className="relative w-auto pl-4 flex-initial">
                                                     <div className="text-white p-3 text-center inline-flex items-center justify-center shadow-lg rounded-full bg-slate-500">
@@ -37,7 +39,7 @@ const Dashboard = () => {
                                                     3.48%
                                                     <ArrowLongUpIcon className="h-4 inline-flex" />
                                                 </span>
-                                                <span className="whitespace-nowrap">Since last month</span>
+                                                <span className="whitespace-nowrap">С прошлым месяцем</span>
                                             </p>
                                         </div>
                                     </div>
@@ -50,7 +52,9 @@ const Dashboard = () => {
                                                     <h5 className="text-blueGray-400 uppercase font-bold text-xs">
                                                         Доходы
                                                     </h5>
-                                                    <span className="font-bold text-xl">251 000</span>
+                                                    <span className="font-bold text-xl">
+                                                        {summary.income.toLocaleString()}
+                                                    </span>
                                                 </div>
                                                 <div className="relative w-auto pl-4 flex-initial">
                                                     <div className="text-white p-3 text-center inline-flex items-center justify-center shadow-lg rounded-full bg-green-500 ">
@@ -75,7 +79,9 @@ const Dashboard = () => {
                                                     <h5 className="text-blueGray-400 uppercase font-bold text-xs">
                                                         Расходы
                                                     </h5>
-                                                    <span className="font-bold text-xl">96 000</span>
+                                                    <span className="font-bold text-xl">
+                                                        {summary.cost.toLocaleString()}
+                                                    </span>
                                                 </div>
                                                 <div className="relative w-auto pl-4 flex-initial">
                                                     <div className="text-white p-3 text-center inline-flex items-center justify-center shadow-lg rounded-full bg-red-500">
@@ -100,7 +106,7 @@ const Dashboard = () => {
                                                     <h5 className="text-blueGray-400 uppercase font-bold text-xs">
                                                         Рентабельность
                                                     </h5>
-                                                    <span className="font-bold text-xl">49,65%</span>
+                                                    <span className="font-bold text-xl">{summary.profitability}%</span>
                                                 </div>
                                                 <div className="relative w-auto pl-4 flex-initial">
                                                     <div className="text-white p-3 text-center inline-flex items-center justify-center shadow-lg rounded-full bg-orange-500">

@@ -6,30 +6,24 @@ export function calculate(transactions, accounts, categories) {
     accounts.forEach((account) => {
         if (transactions) {
             const filteredTransactions = transactions.filter((transaction) => {
-                if (transaction.type) {
-                    return transaction.account === account.name
-                } else {
+
                     return transaction.account === account._id
-                }
+                
             })
 
             const income = filteredTransactions.filter((income) => {
-                if (income.type) {
-                    return income.category === "Доходы"
-                } else {
+    
                     return income.category === incomeId
-                }
+                
             })
             const incomeTotal = income.reduce((acc, income) => {
                 return (acc += income.amount)
             }, 0)
 
             const cost = filteredTransactions.filter((cost) => {
-                if (cost.type) {
-                    return cost.category === "Расходы"
-                } else {
+
                     return cost.category === costId
-                }
+                
             })
             const costTotal = cost.reduce((acc, cost) => {
                 return (acc += cost.amount)
