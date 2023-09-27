@@ -21,13 +21,12 @@ const MainPage = () => {
     const transactionsLoading = useSelector(getTransactionsLoadingStatus())
 
     if (!accountsLoading && !categoriesLoading && !transactionsLoading) {
-        const totalData = calculateTotal(transactions, categories)
         const chartData = calculateChart(transactions, categories, accounts)
 
         return (
             <>
                 <div className="container mx-auto max-w-7xl">
-                    <Dashboard summary={totalData} chart={chartData} />
+                    <Dashboard chart={chartData} />
                 </div>
             </>
         )

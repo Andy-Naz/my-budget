@@ -20,15 +20,6 @@ const Table = ({ onSort, selectedSort, columns, data, children }) => {
                 </div>
             </div>
         </div>
-
-        // <table className="table">
-        //     {children || (
-        //         <>
-        //             <TableHeader {...{ onSort, selectedSort, columns }} />
-        //             <TableBody {...{ data, columns }} />
-        //         </>
-        //     )}
-        // </table>
     )
 }
 

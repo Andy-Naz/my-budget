@@ -35,33 +35,11 @@ const UserPageEdit = () => {
                                 <div className="relative">
                                     <img
                                         alt="Аватар"
-                                        src={Avatar}
+                                        src={currentUser.image}
                                         className="shadow-xl rounded-full border-none -mt-12 w-24"
                                     />
                                 </div>
                             </div>
-                            {/* <div className="w-full px-12 text-center mt-10">
-                                <div className="flex justify-center pt-4">
-                                    <div className="mx-2 p-3 text-center w-3/12">
-                                        <span className="text-xl font-bold block uppercase tracking-wide text-indigo-600">
-                                            22
-                                        </span>
-                                        <span className="text-sm text-indigo-400">Friends</span>
-                                    </div>
-                                    <div className="mx-2 p-3 text-center w-3/12">
-                                        <span className="text-xl font-bold block uppercase tracking-wide text-indigo-600">
-                                            10
-                                        </span>
-                                        <span className="text-sm text-indigo-400">Photos</span>
-                                    </div>
-                                    <div className="mx-2 p-3 text-center w-3/12">
-                                        <span className="text-xl font-bold block uppercase tracking-wide text-indigo-600">
-                                            89
-                                        </span>
-                                        <span className="text-sm text-indigo-400">Comments</span>
-                                    </div>
-                                </div>
-                            </div> */}
                         </div>
                         <div className="text-center mt-6">
                             <h3 className="text-xl font-semibold leading-normal mb-2 text-blueGray-700">

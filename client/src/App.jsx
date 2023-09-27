@@ -6,7 +6,6 @@ import TransactionLayout from "./layouts/TransactionLayout"
 import EditTransaction from "./components/ui/transaction/EditTransaction"
 import TransactionForm from "./components/ui/transaction/TransactionForm"
 import MainLayout from "./layouts/MainLayout"
-import TestPage from "./components/ui/TestPage"
 import RegisterForm from "./components/forms/RegisterForm"
 import LoginForm from "./components/forms/LoginForm"
 import AuthLayout from "./layouts/AuthLayout"
@@ -36,7 +35,6 @@ function App() {
                             <Route path="user/:userId/edit" element={<UserPageEdit />} />
                         </Route>
                         <Route path="logout" element={<LogOut />} />
-                        <Route path="test" element={<TestPage />} />
                         <Route path="*" element={<Navigate to="/" />} />
                     </Route>
                 </Routes>
