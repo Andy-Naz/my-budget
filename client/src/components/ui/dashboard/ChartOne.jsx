@@ -4,9 +4,9 @@ import Chart from "react-apexcharts"
 const ChartOne = ({ chart }) => {
     const options = {
         legend: {
-            show: false,
-            position: "top",
-            horizontalAlign: "left",
+            show: true,
+            position: "bottom",
+            horizontalAlign: "center",
         },
         colors: ["#3C50E0", "#80CAEE"],
         chart: {
@@ -83,7 +83,7 @@ const ChartOne = ({ chart }) => {
         },
         xaxis: {
             type: "category",
-            categories: chart.xaxis,
+            categories: chart.area.xaxis,
             axisBorder: {
                 show: false,
             },
@@ -98,44 +98,26 @@ const ChartOne = ({ chart }) => {
                 },
             },
             min: 0,
-            max: 200000,
+            max: chart.area.max,
         },
     }
 
     const series = [
         {
-            name: chart.values.income.name,
-            data: chart.values.income.data,
+            name: chart.area.values.income.name,
+            data: chart.area.values.income.data,
         },
 
         {
-            name: chart.values.cost.name,
-            data: chart.values.cost.data,
+            name: chart.area.values.cost.name,
+            data: chart.area.values.cost.data,
         },
     ]
 
     return (
-        <div className="col-span-12 rounded-sm border border-stroke bg-white px-4 py-3 shadow-default dark:border-strokedark dark:bg-boxdark xl:col-span-8">
-            <div className="flex flex-wrap items-start justify-between gap-3 sm:flex-nowrap">
-                <div className="flex w-full max-w-45 justify-end">
-                    <div className="inline-flex items-center rounded-md bg-whiter p-1.5 dark:bg-meta-4">
-                        <button className="rounded bg-white py-1 px-3 text-xs font-medium text-black shadow-card hover:bg-white hover:shadow-card dark:bg-boxdark dark:text-white dark:hover:bg-boxdark">
-                            Day
-                        </button>
-                        <button className="rounded py-1 px-3 text-xs font-medium text-black hover:bg-white hover:shadow-card dark:text-white dark:hover:bg-boxdark">
-                            Week
-                        </button>
-                        <button className="rounded py-1 px-3 text-xs font-medium text-black hover:bg-white hover:shadow-card dark:text-white dark:hover:bg-boxdark">
-                            Month
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <div>
-                <div id="chartOne" className="-ml-5">
-                    <Chart options={options} series={series} type="area" height={350} />
-                </div>
+        <div className="col-span-12 rounded-sm bg-white px-4 py-3 shadow-default xl:col-span-8">
+            <div id="chartOne" className="-ml-5">
+                <Chart options={options} series={series} type="area" height={350} />
             </div>
         </div>
     )

@@ -21,26 +21,13 @@ const MainPage = () => {
     const transactionsLoading = useSelector(getTransactionsLoadingStatus())
 
     if (!accountsLoading && !categoriesLoading && !transactionsLoading) {
-        const calculateAccounts = calculate(transactions, accounts, categories)
-        const widgetTitles = ["Счета", "Доходы", "Расходы"]
-
         const totalData = calculateTotal(transactions, categories)
-
-        const chartData = calculateChart(transactions, categories)
+        const chartData = calculateChart(transactions, categories, accounts)
 
         return (
             <>
                 <div className="container mx-auto max-w-7xl">
                     <Dashboard summary={totalData} chart={chartData} />
-                </div>
-                <div className="container mt-3">
-                    <div className="row align-items-start">
-                        {widgetTitles.map((widgetTitle) => (
-                            <div key={widgetTitle} className="col mb-3">
-                                <Widget type="card" data={calculateAccounts} title={widgetTitle} />
-                            </div>
-                        ))}
-                    </div>
                 </div>
             </>
         )
