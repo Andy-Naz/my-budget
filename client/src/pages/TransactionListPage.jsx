@@ -10,12 +10,12 @@ import { getAccounts, getAccountsLoadingStatus } from "../store/accounts"
 import { getCategories, getCategoriesLoadingStatus } from "../store/categories"
 import { getTransactions, removeTransaction } from "../store/transactions"
 import SelectField from "../components/common/form/SelectField"
+import Loading from "../components/common/loading/Loading"
 
 const TransactionsListPage = () => {
     const dispatch = useDispatch()
 
     const transactions = useSelector(getTransactions())
-    const currentUserId = useSelector(getCurrentUserId())
 
     const accounts = useSelector(getAccounts())
     const categories = useSelector(getCategories())
@@ -27,7 +27,7 @@ const TransactionsListPage = () => {
     const [searchQuery, setSearchQuery] = useState("")
     const [sortBy, setSortBy] = useState({ path: "name", order: "asc" })
 
-    const [data, setData] = useState({ rows: "5" })
+    const [data, setData] = useState({ rows: "10" })
     const [filteredTransactions, setFilteredTransactions] = useState()
 
     const rowsList = [
@@ -51,7 +51,7 @@ const TransactionsListPage = () => {
 
     useEffect(() => {
         setCurrentPage(1)
-    }, [searchQuery, data])
+    }, [searchQuery, data, filteredTransactions])
 
     const handleFilter = (selectedRadioCategory, selectedCheckboxAccount) => {
         let updatedFilteredTransactions = null
@@ -90,15 +90,18 @@ const TransactionsListPage = () => {
     }
 
     if (filteredTransactions) {
+        let currentTransactionList = []
         if (searchQuery) {
-            const arr = filteredTransactions.filter((transaction) =>
+            currentTransactionList = filteredTransactions.filter((transaction) =>
                 transaction.comment.toLowerCase().includes(searchQuery.toLowerCase())
             )
+        } else {
+            currentTransactionList = filteredTransactions
         }
 
-        const count = filteredTransactions.length
+        const count = currentTransactionList.length
 
-        const sortedTransactions = _.orderBy(filteredTransactions, [sortBy.path], [sortBy.order])
+        const sortedTransactions = _.orderBy(currentTransactionList, [sortBy.path], [sortBy.order])
 
         const transactionCrop = paginate(sortedTransactions, currentPage, pageSize)
 
@@ -168,7 +171,7 @@ const TransactionsListPage = () => {
             </div>
         )
     }
-    return "Loading..."
+    return <Loading />
 }
 
 export default TransactionsListPage

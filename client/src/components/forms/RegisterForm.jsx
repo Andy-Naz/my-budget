@@ -4,6 +4,7 @@ import TextField from "../common/form/TextField"
 import { useDispatch } from "react-redux"
 import { singUp } from "../../store/users"
 import { Link, useNavigate } from "react-router-dom"
+import TextAreaField from "../common/form/TextAreaField"
 
 const RegisterForm = () => {
     const dispatch = useDispatch()
@@ -13,6 +14,8 @@ const RegisterForm = () => {
         email: "",
         password: "",
         name: "",
+        profession: "",
+        about: "",
     })
     const [errors, setErrors] = useState({})
 
@@ -24,21 +27,17 @@ const RegisterForm = () => {
     }
 
     const validatorConfig = {
+        name: {
+            isRequired: {
+                message: "Имя обязательно для заполнения",
+            },
+        },
         email: {
             isRequired: {
                 message: "Электронная почта обязательна для заполнения",
             },
             isEmail: {
                 message: "Email введен некорректно",
-            },
-        },
-        name: {
-            isRequired: {
-                message: "Имя обязательно для заполнения",
-            },
-            min: {
-                message: "Имя должно состоять минимум из 3 символов",
-                value: 3,
             },
         },
         password: {
@@ -54,6 +53,11 @@ const RegisterForm = () => {
             min: {
                 message: "Пароль должен состоять минимум из 8 символов",
                 value: 8,
+            },
+        },
+        profession: {
+            isRequired: {
+                message: "Имя обязательно для заполнения",
             },
         },
     }
@@ -75,16 +79,23 @@ const RegisterForm = () => {
         const isValid = validate()
         if (!isValid) return
         dispatch(singUp(data))
-        navigate("/", { replace: true })
+        navigate(-1, { replace: true })
     }
 
     return (
         <>
-            <h2 className="mt-10 mb-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+            <h2 className="mt-2 mb-2 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
                 Регистрация
             </h2>
             <form onSubmit={handleSubmit} className="space-y-6">
-                <TextField label="Имя" name="name" value={data.name} placeholder="Ваше имя" onChange={handleChange} error={errors.name} />
+                <TextField
+                    label="Имя"
+                    name="name"
+                    value={data.name}
+                    placeholder="Ваше имя"
+                    onChange={handleChange}
+                    error={errors.name}
+                />
                 <TextField
                     label="Электронная почта"
                     name="email"
@@ -98,9 +109,24 @@ const RegisterForm = () => {
                     type="password"
                     name="password"
                     value={data.password}
-                    placeholder="8+ Символов, 1 Заглавная буква"
+                    placeholder="8+ Символов, 1 Заглавная буква, 1 Цифра"
                     onChange={handleChange}
                     error={errors.password}
+                />
+                <TextField
+                    label="Профессия"
+                    name="profession"
+                    value={data.profession}
+                    placeholder="Ваше профессия"
+                    onChange={handleChange}
+                    error={errors.profession}
+                />
+                <TextAreaField
+                    label="О себе"
+                    value={data.about || ""}
+                    onChange={handleChange}
+                    name="about"
+                    error={errors.comment}
                 />
 
                 <button
@@ -117,15 +143,6 @@ const RegisterForm = () => {
                         Войти
                     </Link>
                 </p>
-
-                {/* <div>
-                        Уже зарегистрированы?
-                        <Link to="/auth/signIn">Войти</Link>
-                    </div>
-
-                    <button className="btn btn-primary w-100 mx-auto" type="submit" disabled={!isValid}>
-                        Submit
-                    </button> */}
             </form>
         </>
     )

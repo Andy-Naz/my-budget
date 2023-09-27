@@ -20,28 +20,6 @@ const UserPage = () => {
                                 />
                             </div>
                         </div>
-                        {/* <div className="w-full px-12 text-center mt-10">
-                            <div className="flex justify-center pt-4">
-                                <div className="mx-2 p-3 text-center w-3/12">
-                                    <span className="text-xl font-bold block uppercase tracking-wide text-indigo-600">
-                                        22
-                                    </span>
-                                    <span className="text-sm text-indigo-400">Friends</span>
-                                </div>
-                                <div className="mx-2 p-3 text-center w-3/12">
-                                    <span className="text-xl font-bold block uppercase tracking-wide text-indigo-600">
-                                        10
-                                    </span>
-                                    <span className="text-sm text-indigo-400">Photos</span>
-                                </div>
-                                <div className="mx-2 p-3 text-center w-3/12">
-                                    <span className="text-xl font-bold block uppercase tracking-wide text-indigo-600">
-                                        89
-                                    </span>
-                                    <span className="text-sm text-indigo-400">Comments</span>
-                                </div>
-                            </div>
-                        </div> */}
                     </div>
                     <div className="text-center mt-6">
                         <h3 className="text-xl font-semibold leading-normal mb-2 text-blueGray-700">
@@ -49,15 +27,13 @@ const UserPage = () => {
                         </h3>
                         <div className="mb-2 text-blueGray-600 mt-2">
                             <i className="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i>
-                            Solution Manager - Creative Tim Officer
+                            {currentUser.profession}
                         </div>
                     </div>
                     <div className="mt-10 py-10 border-t border-blueGray-200 text-center">
                         <div className="flex flex-wrap justify-center">
                             <div className="w-full px-4">
-                                <p className="mb-4 text-lg leading-relaxed text-blueGray-700">
-                                    An artist of considerable range
-                                </p>
+                                <p className="mb-4 text-lg leading-relaxed text-blueGray-700">{currentUser.about}</p>
                                 <Link to={`/user/${currentUser._id}/edit`} className="font-normal text-pink-500">
                                     Редактировать профиль
                                 </Link>

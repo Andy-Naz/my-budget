@@ -80,7 +80,7 @@ const TransactionForm = () => {
         if (!isValid) return
         const newData = { ...data, amount: Number(data.amount) }
         dispatch(createTransaction(newData))
-        navigate("/history", { replace: true })
+        navigate(-1, { replace: true })
     }
 
     if (!accountsLoading && !categoriesLoading) {
@@ -171,53 +171,6 @@ const TransactionForm = () => {
                         </button>
                     </form>
                 </div>
-
-                {/* <div className="container mt-5">
-                    <div className="row">
-                        <div className="col-md-6 offset-md-3 shadow p-4">
-                            <h3>Новая транзакция</h3>
-                            <form onSubmit={handleSubmit}>
-                                <SelectField
-                                    label="Счет"
-                                    defaultOption="Выбрать из списка..."
-                                    options={accountsList}
-                                    name="account"
-                                    onChange={handleChange}
-                                    value={data.account}
-                                    error={errors.account}
-                                />
-                                <SelectField
-                                    label="Категория"
-                                    defaultOption="Выбрать из списка..."
-                                    options={categoriesList}
-                                    name="category"
-                                    onChange={handleChange}
-                                    value={data.category}
-                                    error={errors.category}
-                                />
-                                <TextField
-                                    label="Сумма"
-                                    name="amount"
-                                    type="number"
-                                    value={data.amount}
-                                    onChange={handleChange}
-                                    error={errors.amount}
-                                />
-                                <TextAreaField
-                                    value={data.comment || ""}
-                                    onChange={handleChange}
-                                    name="comment"
-                                    label="Комментарий"
-                                    error={errors.comment}
-                                />
-
-                                <button className="btn btn-primary w-100 mx-auto" type="submit" disabled={!isValid}>
-                                    Submit
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div> */}
             </>
         )
     }

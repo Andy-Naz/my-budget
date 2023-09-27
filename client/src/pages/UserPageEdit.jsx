@@ -4,7 +4,7 @@ import { useNavigate } from "react-router"
 import { getCurrentUserData, updateUser } from "../store/users"
 import TextField from "../components/common/form/TextField"
 import { Link } from "react-router-dom"
-import Avatar from "../assets/images/avatar.png"
+import TextAreaField from "../components/common/form/TextAreaField"
 
 const UserPageEdit = () => {
     const dispatch = useDispatch()
@@ -47,14 +47,25 @@ const UserPageEdit = () => {
                             </h3>
                             <div className="mb-2 text-blueGray-600 mt-2">
                                 <i className="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i>
-                                Solution Manager - Creative Tim Officer
+                                <TextField
+                                    label="Профессия"
+                                    name="profession"
+                                    value={user.profession}
+                                    onChange={handleChange}
+                                    required
+                                />
                             </div>
                         </div>
                         <div className="mt-10 py-10 border-t border-blueGray-200 text-center">
                             <div className="flex flex-wrap justify-center">
                                 <div className="w-full px-4">
                                     <p className="mb-4 text-lg leading-relaxed text-blueGray-700">
-                                        An artist of considerable range
+                                        <TextAreaField
+                                            label="О себе"
+                                            value={user.about || ""}
+                                            onChange={handleChange}
+                                            name="about"
+                                        />
                                     </p>
                                     <div className="flex justify-around">
                                         <Link to={`/user/${currentUser._id}`} className="font-normal text-slate-500">

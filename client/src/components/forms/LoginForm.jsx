@@ -34,8 +34,7 @@ const LoginForm = () => {
 
     useEffect(() => {
         if (isLoggedIn) {
-            // dispatch(loadUsersList)
-            navigate("/", { replace: true })
+            navigate(-1, { replace: true })
         }
     }, [isLoggedIn])
 
@@ -56,12 +55,11 @@ const LoginForm = () => {
         const isValid = validate()
         if (!isValid) return
         dispatch(logIn({ payload: data }))
-        // navigate("/", { replace: true })
     }
 
     return (
         <>
-            <h2 className="mt-10 mb-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+            <h2 className="mt-24 mb-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
                 Вход в аккаунт
             </h2>
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -83,11 +81,6 @@ const LoginForm = () => {
 
                 {loginError && <p className="text-danger">{loginError}</p>}
 
-                {/* <div>
-                    Нет учётной записи?
-                    <Link to="/auth/signUp" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Зарегистрироваться</Link>
-                </div> */}
-
                 <button
                     type="submit"
                     disabled={!isValid}
@@ -102,9 +95,6 @@ const LoginForm = () => {
                         Зарегистрироваться
                     </Link>
                 </p>
-                {/* <button type="submit" disabled={!isValid} className="btn btn-primary w-100 mx-auto">
-                    Отправить
-                </button> */}
             </form>
         </>
     )

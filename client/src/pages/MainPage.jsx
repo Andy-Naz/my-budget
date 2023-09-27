@@ -1,13 +1,9 @@
 import React from "react"
-import Widget from "../components/ui/Widget"
 import { useSelector } from "react-redux"
 import { getAccounts, getAccountsLoadingStatus } from "../store/accounts"
 import { getTransactions, getTransactionsLoadingStatus } from "../store/transactions"
-import { calculate } from "../utils/calculate"
 import { getCategories, getCategoriesLoadingStatus } from "../store/categories"
 import Dashboard from "../components/ui/Dashboard"
-import { calculateTotal } from "../utils/calculateTotal"
-import { transformDemoData } from "../utils/transformDemoData"
 import Loading from "../components/common/loading/Loading"
 import { calculateChart } from "../utils/calculateChart"
 

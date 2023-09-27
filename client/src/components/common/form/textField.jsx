@@ -22,13 +22,13 @@ const TextField = ({ label, type, name, value, onChange, error, placeholder }) =
                 <label htmlFor={name} className="block text-sm font-medium leading-6 text-gray-900">
                     {label}
                 </label>
-                {type === "password" && (
+                {/* {type === "password" && (
                     <div className="text-sm">
                         <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
                             Забыли пароль?
                         </a>
                     </div>
-                )}
+                )} */}
             </div>
             <div className="mt-2 relative flex">
                 <input
