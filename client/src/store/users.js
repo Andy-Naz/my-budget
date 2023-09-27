@@ -105,7 +105,13 @@ export const singUp = (payload) => async (dispatch) => {
         dispatch(authRequestSuccess({ userId: data.userId }))
         localStorageService.setTokens(data)
     } catch (error) {
-        dispatch(authRequestFailed(error.message))
+        const { code, message } = error.response.data.error
+        if (code === 400) {
+            const errorMessage = generateAuthError(message)
+            dispatch(authRequestFailed(errorMessage))
+        } else {
+            dispatch(authRequestFailed(error.message))
+        }
     }
 }
 

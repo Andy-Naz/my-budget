@@ -62,9 +62,9 @@ const TransactionForm = () => {
         },
     }
 
-    useEffect(() => {
-        validate()
-    }, [data])
+    const goBack = () => {
+        navigate(-1)
+    }
 
     const validate = () => {
         const errors = validator(data, validatorConfig)
@@ -99,7 +99,7 @@ const TransactionForm = () => {
                     <form onSubmit={handleSubmit}>
                         <div className="mt-6 border-t border-gray-100">
                             <dl className="divide-y divide-gray-100">
-                                <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                <div className="px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                                     <dt className="text-sm font-medium leading-6 text-gray-900">Дата</dt>
                                     <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
                                         <TextField
@@ -111,7 +111,7 @@ const TransactionForm = () => {
                                         />
                                     </dd>
                                 </div>
-                                <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                <div className="px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                                     <dt className="text-sm font-medium leading-6 text-gray-900">Счет</dt>
                                     <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
                                         <SelectField
@@ -124,7 +124,7 @@ const TransactionForm = () => {
                                         />
                                     </dd>
                                 </div>
-                                <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                <div className="px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                                     <dt className="text-sm font-medium leading-6 text-gray-900">Категория</dt>
                                     <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
                                         <SelectField
@@ -137,7 +137,7 @@ const TransactionForm = () => {
                                         />
                                     </dd>
                                 </div>
-                                <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                <div className="px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                                     <dt className="text-sm font-medium leading-6 text-gray-900">Сумма</dt>
                                     <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
                                         <TextField
@@ -149,7 +149,7 @@ const TransactionForm = () => {
                                         />
                                     </dd>
                                 </div>
-                                <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                <div className="px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                                     <dt className="text-sm font-medium leading-6 text-gray-900">Комментарий</dt>
                                     <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
                                         <TextAreaField
@@ -162,13 +162,22 @@ const TransactionForm = () => {
                                 </div>
                             </dl>
                         </div>
-                        <button
-                            type="submit"
-                            disabled={!isValid}
-                            className="flex w-full sm:w-2/12 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                        >
-                            Создать
-                        </button>
+                        <div className="flex justify-end">
+                            <button
+                                type="button"
+                                onClick={goBack}
+                                className="flex justify-center rounded-md bg-slate-600 px-8 py-1.5 mr-2 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-slate-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-600"
+                            >
+                                Назад
+                            </button>
+                            <button
+                                type="submit"
+                                disabled={!isValid}
+                                className="flex justify-center rounded-md bg-indigo-600 px-6 py-1.5 mr-2 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                            >
+                                Создать
+                            </button>
+                        </div>
                     </form>
                 </div>
             </>

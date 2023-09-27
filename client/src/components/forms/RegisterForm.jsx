@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react"
 import { validator } from "../../utils/validator"
 import TextField from "../common/form/TextField"
-import { useDispatch } from "react-redux"
-import { singUp } from "../../store/users"
+import { useDispatch, useSelector } from "react-redux"
+import { getAuthErrors, getIsLoggedIn, singUp } from "../../store/users"
 import { Link, useNavigate } from "react-router-dom"
 import TextAreaField from "../common/form/TextAreaField"
 
 const RegisterForm = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
+
+    const loginError = useSelector(getAuthErrors())
+    const isLoggedIn = useSelector(getIsLoggedIn())
 
     const [data, setData] = useState({
         email: "",
@@ -18,6 +21,7 @@ const RegisterForm = () => {
         about: "",
     })
     const [errors, setErrors] = useState({})
+    const [tryRegister, setTryRegister] = useState(false)
 
     const handleChange = (target) => {
         setData((prevState) => ({
@@ -57,13 +61,21 @@ const RegisterForm = () => {
         },
         profession: {
             isRequired: {
-                message: "Имя обязательно для заполнения",
+                message: "Профессия обязательна для заполнения",
             },
         },
     }
 
     useEffect(() => {
-        validate()
+        if (isLoggedIn) {
+            navigate(-1, { replace: true })
+        }
+    }, [isLoggedIn])
+
+    useEffect(() => {
+        if (tryRegister) {
+            validate()
+        }
     }, [data])
 
     const validate = () => {
@@ -76,10 +88,10 @@ const RegisterForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        setTryRegister(true)
         const isValid = validate()
         if (!isValid) return
         dispatch(singUp(data))
-        navigate(-1, { replace: true })
     }
 
     return (
@@ -128,6 +140,8 @@ const RegisterForm = () => {
                     name="about"
                     error={errors.comment}
                 />
+
+                {loginError && <p className="text-red-500">{loginError}</p>}
 
                 <button
                     type="submit"

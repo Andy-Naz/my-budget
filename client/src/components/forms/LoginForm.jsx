@@ -13,6 +13,8 @@ const LoginForm = () => {
 
     const [data, setData] = useState({ email: "", password: "" })
     const [errors, setErrors] = useState({})
+    const [tryLogin, setTryLogin] = useState(false)
+
     const dispatch = useDispatch()
 
     const handleChange = (target) => {
@@ -39,7 +41,9 @@ const LoginForm = () => {
     }, [isLoggedIn])
 
     useEffect(() => {
-        validate()
+        if (tryLogin) {
+            validate()
+        }
     }, [data])
 
     const validate = () => {
@@ -52,6 +56,7 @@ const LoginForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        setTryLogin(true)
         const isValid = validate()
         if (!isValid) return
         dispatch(logIn({ payload: data }))
@@ -79,7 +84,7 @@ const LoginForm = () => {
                     error={errors.password}
                 />
 
-                {loginError && <p className="text-danger">{loginError}</p>}
+                {loginError && <p className="text-red-500">{loginError}</p>}
 
                 <button
                     type="submit"

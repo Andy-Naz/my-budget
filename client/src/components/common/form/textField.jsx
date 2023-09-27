@@ -49,28 +49,11 @@ const TextField = ({ label, type, name, value, onChange, error, placeholder }) =
                         {showPassword ? <EyeIcon /> : <EyeSlashIcon />}
                     </button>
                 )}
+                <div className="absolute -bottom-4 right-0 text-xs">
+                    {error && <div className="text-red-500">{error}</div>}
+                </div>
             </div>
         </div>
-
-        // <div className="mb-4">
-        //     <label htmlFor={name}>{label}</label>
-        //     <div className="input-group has-validation">
-        //         <input
-        //             type={showPassword ? "text" : type}
-        //             id={name}
-        //             name={name}
-        //             value={value}
-        //             onChange={handleChange}
-        //             className={getInputClasses()}
-        //         />
-        //         {type === "password" && (
-        //             <button className="btn btn-outline-secondary" type="button" onClick={toggleShowPassword}>
-        //                 <i className={"bi bi-eye" + (showPassword ? "-slash" : "")}></i>
-        //             </button>
-        //         )}
-        //         {error && <div className="invalid-feedback">{error}</div>}
-        //     </div>
-        // </div>
     )
 }
 

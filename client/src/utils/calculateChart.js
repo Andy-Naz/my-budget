@@ -43,18 +43,18 @@ export function calculateChart(transactions, categories, accounts) {
             const trendIncome = []
             const trendCost = []
 
-            const filteredTransactions = transactions.filter((item) => {
+            const filteredTransactionsByYear = transactions.filter((item) => {
                 const [y, m, d] = item.date.split("-")
                 return y === String(year)
             })
 
             // area chart
             months.forEach((month) => {
-                const incomeTransactions = filteredTransactions.filter((item) => {
+                const incomeTransactions = filteredTransactionsByYear.filter((item) => {
                     return item.category === incomeId
                 })
 
-                const costTransactions = filteredTransactions.filter((item) => {
+                const costTransactions = filteredTransactionsByYear.filter((item) => {
                     return item.category === costId
                 })
 
@@ -105,7 +105,7 @@ export function calculateChart(transactions, categories, accounts) {
                 return (acc += cost)
             }, 0)
             const balanceTotal = incomeTotal - costTotal
-            const profitabilityTotal = ((balanceTotal / incomeTotal) * 100).toFixed(1)
+            const profitabilityTotal = incomeTotal !== 0 ? ((balanceTotal / incomeTotal) * 100).toFixed(1) : 0
 
             // calculate deviation
             const incomeDeviation = trendIncome[0] !== 0 ? ((trendIncome[1] / trendIncome[0] - 1) * 100).toFixed(1) : 0
@@ -130,18 +130,18 @@ export function calculateChart(transactions, categories, accounts) {
             const donutCostData = []
 
             accounts.forEach((account) => {
-                const filteredTransactions = transactions.filter((transaction) => {
+                const filteredTransactionsByAccount = filteredTransactionsByYear.filter((transaction) => {
                     return transaction.account === account._id
                 })
 
-                const income = filteredTransactions.filter((income) => {
+                const income = filteredTransactionsByAccount.filter((income) => {
                     return income.category === incomeId
                 })
                 const incomeTotal = income.reduce((acc, income) => {
                     return (acc += income.amount)
                 }, 0)
 
-                const cost = filteredTransactions.filter((cost) => {
+                const cost = filteredTransactionsByAccount.filter((cost) => {
                     return cost.category === costId
                 })
                 const costTotal = cost.reduce((acc, cost) => {

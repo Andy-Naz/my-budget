@@ -18,6 +18,7 @@ const MainPage = () => {
 
     if (!accountsLoading && !categoriesLoading && !transactionsLoading) {
         const chartData = calculateChart(transactions, categories, accounts)
+        console.log(chartData)
 
         return (
             <>
