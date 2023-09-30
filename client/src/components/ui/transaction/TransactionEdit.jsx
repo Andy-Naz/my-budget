@@ -9,6 +9,7 @@ import { getCategories, getCategoriesLoadingStatus } from "../../../store/catego
 import { getTransactions, getTransactionsLoadingStatus, updateTransaction } from "../../../store/transactions"
 import { useNavigate, useParams } from "react-router-dom"
 import { getIsLoggedIn } from "../../../store/users"
+import Loading from "../../common/loading/Loading"
 
 const TransactionEdit = () => {
     const { transactionId } = useParams()
@@ -185,7 +186,7 @@ const TransactionEdit = () => {
             </>
         )
     }
-    return "Loading..."
+    return <Loading />
 }
 
 export default TransactionEdit

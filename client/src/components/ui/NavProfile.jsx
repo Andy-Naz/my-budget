@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 import { getCurrentUserData } from "../../store/users"
 import { Menu, Transition } from "@headlessui/react"
 import { Fragment } from "react"
+import Loading from "../common/loading/Loading"
 
 const NavProfile = () => {
     const currentUser = useSelector(getCurrentUserData())
@@ -66,7 +67,7 @@ const NavProfile = () => {
         )
     }
 
-    return "Loading..."
+    return <Loading />
 }
 
 export default NavProfile

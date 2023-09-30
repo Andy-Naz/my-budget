@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { getCategories, getCategoriesLoadingStatus } from "../../../store/categories"
 import { createTransaction } from "../../../store/transactions"
 import { useNavigate } from "react-router-dom"
+import Loading from "../../common/loading/Loading"
 
 const TransactionForm = () => {
     const dispatch = useDispatch()
@@ -183,7 +184,7 @@ const TransactionForm = () => {
             </>
         )
     }
-    return "Loading..."
+    return <Loading />
 }
 
 export default TransactionForm
