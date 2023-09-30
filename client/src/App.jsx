@@ -13,7 +13,6 @@ import LogOut from "./layouts/LogOut"
 import ProtectedRoutes from "./components/ui/ProtectedRoutes"
 import UserPage from "./pages/UserPage"
 import UserPageEdit from "./pages/UserPageEdit"
-import TestPage from "./components/ui/TestPage"
 
 function App() {
     return (
