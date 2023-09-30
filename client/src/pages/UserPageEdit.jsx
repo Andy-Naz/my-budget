@@ -1,4 +1,5 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
+import { validator } from "../utils/validator"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router"
 import { getCurrentUserData, updateUser } from "../store/users"
@@ -11,6 +12,7 @@ const UserPageEdit = () => {
     const navigate = useNavigate()
     const currentUser = useSelector(getCurrentUserData())
     const [user, setUser] = useState(currentUser)
+    const [errors, setErrors] = useState({})
 
     const handleChange = (target) => {
         setUser((prevState) => ({
@@ -19,8 +21,35 @@ const UserPageEdit = () => {
         }))
     }
 
+    const validatorConfig = {
+        name: {
+            isRequired: {
+                message: "Имя обязательно для заполнения",
+            },
+        },
+        profession: {
+            isRequired: {
+                message: "Профессия обязательна для заполнения",
+            },
+        },
+    }
+
+    useEffect(() => {
+        validate()
+    }, [user])
+
+    const validate = () => {
+        const errors = validator(user, validatorConfig)
+        setErrors(errors)
+        return Object.keys(errors).length === 0
+    }
+
+    const isValid = Object.keys(errors).length === 0
+
     const handleSubmit = (e) => {
         e.preventDefault()
+        const isValid = validate()
+        if (!isValid) return
         dispatch(updateUser(user))
         navigate(`/user/${currentUser._id}`, { replace: true })
     }
@@ -43,7 +72,13 @@ const UserPageEdit = () => {
                         </div>
                         <div className="text-center mt-6">
                             <h3 className="text-xl font-semibold leading-normal mb-2 text-blueGray-700">
-                                <TextField label="Имя" name="name" value={user.name} onChange={handleChange} required />
+                                <TextField
+                                    label="Имя"
+                                    name="name"
+                                    value={user.name}
+                                    onChange={handleChange}
+                                    error={errors.name}
+                                />
                             </h3>
                             <div className="mb-2 text-blueGray-600 mt-2">
                                 <i className="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i>
@@ -52,7 +87,7 @@ const UserPageEdit = () => {
                                     name="profession"
                                     value={user.profession}
                                     onChange={handleChange}
-                                    required
+                                    error={errors.profession}
                                 />
                             </div>
                         </div>
