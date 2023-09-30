@@ -3,7 +3,7 @@ import MainPage from "./pages/MainPage"
 import TransactionListPage from "./pages/TransactionListPage"
 import AppLoader from "./components/ui/hoc/appLoader"
 import TransactionLayout from "./layouts/TransactionLayout"
-import EditTransaction from "./components/ui/transaction/EditTransaction"
+import TransactionEdit from "./components/ui/transaction/TransactionEdit"
 import TransactionForm from "./components/ui/transaction/TransactionForm"
 import MainLayout from "./layouts/MainLayout"
 import RegisterForm from "./components/forms/RegisterForm"
@@ -13,6 +13,7 @@ import LogOut from "./layouts/LogOut"
 import ProtectedRoutes from "./components/ui/ProtectedRoutes"
 import UserPage from "./pages/UserPage"
 import UserPageEdit from "./pages/UserPageEdit"
+import TestPage from "./components/ui/TestPage"
 
 function App() {
     return (
@@ -24,7 +25,7 @@ function App() {
                         <Route path="history" element={<TransactionListPage />} />
                         <Route path="transaction" element={<TransactionLayout />}>
                             <Route index element={<TransactionForm />} />
-                            <Route path=":transactionId" element={<EditTransaction />} />
+                            <Route path=":transactionId" element={<TransactionEdit />} />
                         </Route>
                         <Route path="auth" element={<AuthLayout />}>
                             <Route path="signIn" element={<LoginForm />} />
@@ -35,6 +36,8 @@ function App() {
                             <Route path="user/:userId/edit" element={<UserPageEdit />} />
                         </Route>
                         <Route path="logout" element={<LogOut />} />
+                        <Route path="test" element={<TestPage />} />
+
                         <Route path="*" element={<Navigate to="/" />} />
                     </Route>
                 </Routes>

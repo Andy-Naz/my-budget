@@ -81,23 +81,6 @@ const UserPageEdit = () => {
                     </div>
                 </div>
             </div>
-            {/* <div className="container mt-5">
-                <div className="row">
-                    <div className="col-md-6 offset-md-3 shadow p-4">
-                        <div className="d-flex justify-content-center align-items-center mb-2">
-                            <TextField label="Имя" name="name" value={user.name} onChange={handleChange} required />
-                        </div>
-                        <div className="d-flex justify-content-between align-items-center">
-                            <Link to={`/user/${currentUser._id}`}>
-                                <button className="btn btn-primary">Назад</button>
-                            </Link>
-                            <button className="btn btn-primary" type="submit">
-                                Применить
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div> */}
         </form>
     )
 }

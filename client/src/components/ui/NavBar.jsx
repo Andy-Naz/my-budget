@@ -38,7 +38,6 @@ const NavBar = () => {
                     <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
                         <div className="relative flex h-16 items-center justify-between">
                             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                                {/* Mobile menu button*/}
                                 <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                                     <span className="absolute -inset-0.5" />
                                     <span className="sr-only">Open main menu</span>
@@ -116,54 +115,6 @@ const NavBar = () => {
             )}
         </Disclosure>
     )
-
-    //     return (
-    //         <nav className="navbar navbar-expand-sm bg-body-tertiary">
-    //             <div className="container-fluid">
-    //                 <a className="navbar-brand" href="#">
-    //                     Navbar
-    //                 </a>
-    //                 <button
-    //                     className="navbar-toggler"
-    //                     type="button"
-    //                     data-bs-toggle="collapse"
-    //                     data-bs-target="#navbarSupportedContent"
-    //                     aria-controls="navbarSupportedContent"
-    //                     aria-expanded="false"
-    //                     aria-label="Toggle navigation"
-    //                 >
-    //                     <span className="navbar-toggler-icon"></span>
-    //                 </button>
-    //                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
-    //                     <ul className="navbar-nav me-auto mb-lg-0">
-    //                         <li className="nav-item d-flex align-items-center">
-    //                             <Link to="/" className="nav-link" aria-current="page">
-    //                                 Главная
-    //                             </Link>
-    //                         </li>
-    //                         <li className="nav-item d-flex align-items-center">
-    //                             <Link to="history" className="nav-link" aria-current="page">
-    //                                 История
-    //                             </Link>
-    //                         </li>
-    //                         <li className="nav-item d-flex align-items-center">
-    //                             <Link to="test" className="nav-link" aria-current="page">
-    //                                 Тест
-    //                             </Link>
-    //                         </li>
-    //                         {isLoggedIn  ? (
-    //                             <NavProfile />
-    //                         ) : (
-    //                             <Link to="auth/signIn" className="nav-link" aria-current="page">
-    //                                 Войти
-    //                             </Link>
-    //                         )}
-    //                     </ul>
-
-    //                 </div>
-    //             </div>
-    //         </nav>
-    //     )
 }
 
 export default NavBar

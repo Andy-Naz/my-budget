@@ -4,9 +4,6 @@ const TextAreaField = ({ label, name, value, onChange, error }) => {
     const handleChange = ({ target }) => {
         onChange({ name: target.name, value: target.value })
     }
-    const getInputClasses = () => {
-        return "form-control" + (error ? " is-invalid" : "")
-    }
 
     return (
         <div>
@@ -22,7 +19,9 @@ const TextAreaField = ({ label, name, value, onChange, error }) => {
                     className="block w-full rounded-md border-1 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
 
-                {/* {error && <div className="invalid-feedback ">{error}</div>} */}
+                <div className="absolute -bottom-4 right-0 text-xs">
+                    {error && <div className="text-red-500">{error}</div>}
+                </div>
             </div>
         </div>
     )

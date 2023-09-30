@@ -116,8 +116,6 @@ export const getTransactions = () => (state) => state.transactions.entities
 export const getTransactionsLoadingStatus = () => (state) => state.transactions.isLoading
 export const getTransactionById = (transactionId) => (state) => {
     if (state.transactions.entities) {
-        console.log(state.transactions.entities)
-        console.log(transactionId)
         return state.transactions.entities.find((transaction) => transaction._id === transactionId)
     }
 }

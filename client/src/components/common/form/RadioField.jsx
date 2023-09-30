@@ -2,7 +2,6 @@ import React from "react"
 
 const RadioField = ({ options, name, onChange, label, valueProperty, contentProperty, checkedCategory }) => {
     const handleChange = ({ target }) => {
-        console.log(target.value)
         onChange({ name: target.name, value: target.value })
     }
 

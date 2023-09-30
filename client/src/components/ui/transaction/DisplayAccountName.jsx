@@ -1,8 +1,8 @@
 import React from "react"
 import { useSelector } from "react-redux"
-import { getAccounts, getAccountsLoadingStatus } from "../../store/accounts"
+import { getAccounts, getAccountsLoadingStatus } from "../../../store/accounts"
 
-const Account = ({ data }) => {
+const DisplayAccountName = ({ data }) => {
     const accounts = useSelector(getAccounts())
     const accountsLoading = useSelector(getAccountsLoadingStatus())
 
@@ -13,4 +13,4 @@ const Account = ({ data }) => {
     }
 }
 
-export default Account
+export default DisplayAccountName

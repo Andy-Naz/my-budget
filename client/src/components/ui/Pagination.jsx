@@ -3,8 +3,25 @@ import _ from "lodash"
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid"
 
 const Pagination = ({ itemsCount, pageSize, onPageChange, currentPage }) => {
+    const setPages = (count) => {
+        const pages = []
+        if (count >= 7) {
+            const start = _.range(currentPage, currentPage + 2)
+            const end = _.range(count - 1, count + 1)
+            if (currentPage >= count - 4) {
+                return _.range(count - 4, count + 1)
+            } else {
+                pages.push(...start, "...", ...end)
+            }
+
+            return pages
+        } else {
+            return _.range(1, count + 1)
+        }
+    }
+
     const pageCount = Math.ceil(itemsCount / pageSize)
-    const pages = _.range(1, pageCount + 1)
+    const pages = setPages(pageCount)
     const startCountItems = pageSize * (currentPage - 1) + 1
     const endCountItems = pageSize * currentPage > itemsCount ? itemsCount : pageSize * currentPage
 
@@ -17,24 +34,9 @@ const Pagination = ({ itemsCount, pageSize, onPageChange, currentPage }) => {
     return (
         <>
             {pageCount > 1 && (
-                <div className="flex items-center justify-between px-4 py-3 sm:px-6">
-                    <div className="flex flex-1 justify-between sm:hidden">
-                        <button
-                            className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-                            onClick={() => onPageChange(currentPage === 1 ? currentPage : currentPage - 1)}
-                        >
-                            Предыдущий
-                        </button>
-                        <button
-                            href="#"
-                            className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-                            onClick={() => onPageChange(currentPage === pages.length ? currentPage : currentPage + 1)}
-                        >
-                            Следующий
-                        </button>
-                    </div>
-                    <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
-                        <div>
+                <div className="flex items-center justify-center sm:justify-between px-4 py-3 sm:px-6">
+                    <div className="flex flex-col sm:flex-row sm:flex-1 sm:items-center sm:justify-between">
+                        <div className="max-sm:mb-2">
                             <p className="text-sm text-gray-700">
                                 Показано с <span className="font-medium">{startCountItems}</span> по{" "}
                                 <span className="font-medium">{endCountItems}</span> из{" "}
@@ -69,7 +71,7 @@ const Pagination = ({ itemsCount, pageSize, onPageChange, currentPage }) => {
                                         className="h-5 w-5"
                                         aria-hidden="true"
                                         onClick={() =>
-                                            onPageChange(currentPage === pages.length ? currentPage : currentPage + 1)
+                                            onPageChange(currentPage === pageCount ? currentPage : currentPage + 1)
                                         }
                                     />
                                 </button>

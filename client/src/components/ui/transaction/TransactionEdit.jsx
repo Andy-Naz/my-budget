@@ -8,11 +8,14 @@ import { useDispatch, useSelector } from "react-redux"
 import { getCategories, getCategoriesLoadingStatus } from "../../../store/categories"
 import { getTransactions, getTransactionsLoadingStatus, updateTransaction } from "../../../store/transactions"
 import { useNavigate, useParams } from "react-router-dom"
+import { getIsLoggedIn } from "../../../store/users"
 
-const EditTransaction = () => {
+const TransactionEdit = () => {
     const { transactionId } = useParams()
     const dispatch = useDispatch()
     const navigate = useNavigate()
+
+    const isLoggedIn = useSelector(getIsLoggedIn())
 
     const accounts = useSelector(getAccounts())
     const accountsLoading = useSelector(getAccountsLoadingStatus())
@@ -171,7 +174,7 @@ const EditTransaction = () => {
                             </button>
                             <button
                                 type="submit"
-                                disabled={!isValid}
+                                disabled={!isValid || !isLoggedIn}
                                 className="flex justify-center rounded-md bg-indigo-600 px-3 py-1.5 mr-2 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                             >
                                 Сохранить
@@ -185,4 +188,4 @@ const EditTransaction = () => {
     return "Loading..."
 }
 
-export default EditTransaction
+export default TransactionEdit

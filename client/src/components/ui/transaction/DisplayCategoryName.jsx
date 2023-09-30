@@ -1,8 +1,8 @@
 import React from "react"
 import { useSelector } from "react-redux"
-import { getCategories, getCategoriesLoadingStatus } from "../../store/categories"
+import { getCategories, getCategoriesLoadingStatus } from "../../../store/categories"
 
-const Category = ({ data }) => {
+const DisplayCategoryName = ({ data }) => {
     const categories = useSelector(getCategories())
     const categoriesLoading = useSelector(getCategoriesLoadingStatus())
 
@@ -13,4 +13,4 @@ const Category = ({ data }) => {
     }
 }
 
-export default Category
+export default DisplayCategoryName

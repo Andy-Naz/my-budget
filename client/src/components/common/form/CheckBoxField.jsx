@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react"
 
 const CheckBoxField = ({ options, name, onChange, label, valueProperty, contentProperty, checkedAccounts }) => {
     const [checkboxData, setCheckboxData] = useState([])
-    // console.log("checkedAccounts", checkedAccounts)
-    // console.log("checkboxData", checkboxData)
 
     const handleChange = ({ target }) => {
         if (!checkboxData.includes(target.value)) {

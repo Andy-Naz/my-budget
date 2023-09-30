@@ -5,7 +5,6 @@ import TransactionFilter from "../components/ui/transaction/TransactionFilter"
 import TransactionTable from "../components/ui/transaction/TransactionTable"
 import _ from "lodash"
 import { useDispatch, useSelector } from "react-redux"
-import { getCurrentUserId } from "../store/users"
 import { getAccounts, getAccountsLoadingStatus } from "../store/accounts"
 import { getCategories, getCategoriesLoadingStatus } from "../store/categories"
 import { getTransactions, removeTransaction } from "../store/transactions"
@@ -78,7 +77,7 @@ const TransactionsListPage = () => {
     }
 
     const handlePageChange = (pageIndex) => {
-        setCurrentPage(pageIndex)
+        if (typeof pageIndex === "number") setCurrentPage(pageIndex)
     }
 
     const handleSort = (item) => {
@@ -106,9 +105,9 @@ const TransactionsListPage = () => {
         const transactionCrop = paginate(sortedTransactions, currentPage, pageSize)
 
         return (
-            <div className="container mx-auto max-w-7xl mt-4">
+            <div className="container max-w-7xl mx-auto mt-4">
                 <div className="flex w-full">
-                    <div className="w-3/12 pl-2 pr-24 mt-20">
+                    <div className="lg:w-1/6 px-2 mt-20 hidden lg:block">
                         {!accountsLoading && !categoriesLoading && (
                             <TransactionFilter
                                 accounts={accounts}
@@ -119,9 +118,9 @@ const TransactionsListPage = () => {
                             />
                         )}
                     </div>
-                    <div className="flex flex-col w-9/12 px-2">
+                    <div className="flex flex-col w-full lg:w-5/6 px-2">
                         <div className="flex md:flex-row flex-col justify-between">
-                            <div className="flex flex-row justify-start md:w-4/12 w-full mt-2">
+                            <div className="flex flex-row justify-start md:w-5/12 lg:w-4/12 w-full mt-2">
                                 <div className="flex items-center justify-center">
                                     <p className="mr-4 align-middle">Показать</p>
                                 </div>
@@ -134,12 +133,12 @@ const TransactionsListPage = () => {
                                     />
                                 </div>
                             </div>
-                            <div className="flex flex-row justify-end md:w-4/12 w-full mt-2">
+                            <div className="flex flex-row justify-end md:w-5/12 lg:w-4/12 w-full mt-2">
                                 <div className="flex items-center justify-center">
                                     <p className="mr-4 align-middle">Поиск</p>
                                 </div>
                                 <input
-                                    className="block w-full rounded-md border-1 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    className="block w-full rounded-md border-1 py-1.5 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     type="search"
                                     placeholder="По комментарию..."
                                     value={searchQuery}

@@ -43,23 +43,6 @@ const UserPage = () => {
                 </div>
             </div>
         </div>
-
-        // <div classNameName="container mt-5">
-        //     <div classNameName="row">
-        //         <div classNameName="col-md-6 offset-md-3 shadow p-4">
-        //             <div classNameName="d-flex justify-content-center align-items-center mb-2">
-        //                 <img src={currentUser.image} alt="" height="100" classNameName="img-responsive rounded-circle" />
-        //                 <div>{currentUser.name}</div>
-        //             </div>
-
-        //             <div classNameName="d-flex justify-content-center align-items-center">
-        //                 <Link to={`/user/${currentUser._id}/edit`}>
-        //                     <button classNameName="btn btn-primary">Редактировать</button>
-        //                 </Link>
-        //             </div>
-        //         </div>
-        //     </div>
-        // </div>
     )
 }
 
