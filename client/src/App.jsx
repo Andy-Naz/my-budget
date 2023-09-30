@@ -36,8 +36,6 @@ function App() {
                             <Route path="user/:userId/edit" element={<UserPageEdit />} />
                         </Route>
                         <Route path="logout" element={<LogOut />} />
-                        <Route path="test" element={<TestPage />} />
-
                         <Route path="*" element={<Navigate to="/" />} />
                     </Route>
                 </Routes>
