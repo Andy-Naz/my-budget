@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react"
 import { validator } from "../../utils/validator"
-import TextField from "../common/form/TextField"
 import { useDispatch, useSelector } from "react-redux"
 import { getAuthErrors, getIsLoggedIn, singUp } from "../../store/users"
 import { Link, useNavigate } from "react-router-dom"
 import TextAreaField from "../common/form/TextAreaField"
+import TextInputField from "../common/form/TextInputField"
 
 const RegisterForm = () => {
     const dispatch = useDispatch()
@@ -100,7 +100,7 @@ const RegisterForm = () => {
                 Регистрация
             </h2>
             <form onSubmit={handleSubmit} className="space-y-6">
-                <TextField
+                <TextInputField
                     label="Имя"
                     name="name"
                     value={data.name}
@@ -108,7 +108,7 @@ const RegisterForm = () => {
                     onChange={handleChange}
                     error={errors.name}
                 />
-                <TextField
+                <TextInputField
                     label="Электронная почта"
                     name="email"
                     value={data.email}
@@ -116,7 +116,7 @@ const RegisterForm = () => {
                     onChange={handleChange}
                     error={errors.email}
                 />
-                <TextField
+                <TextInputField
                     label="Пароль"
                     type="password"
                     name="password"
@@ -125,7 +125,7 @@ const RegisterForm = () => {
                     onChange={handleChange}
                     error={errors.password}
                 />
-                <TextField
+                <TextInputField
                     label="Профессия"
                     name="profession"
                     value={data.profession}

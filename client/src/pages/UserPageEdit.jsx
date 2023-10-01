@@ -3,9 +3,9 @@ import { validator } from "../utils/validator"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router"
 import { getCurrentUserData, updateUser } from "../store/users"
-import TextField from "../components/common/form/TextField"
 import { Link } from "react-router-dom"
 import TextAreaField from "../components/common/form/TextAreaField"
+import TextInputField from "../components/common/form/TextInputField"
 
 const UserPageEdit = () => {
     const dispatch = useDispatch()
@@ -72,7 +72,7 @@ const UserPageEdit = () => {
                         </div>
                         <div className="text-center mt-6">
                             <h3 className="text-xl font-semibold leading-normal mb-2 text-blueGray-700">
-                                <TextField
+                                <TextInputField
                                     label="Имя"
                                     name="name"
                                     value={user.name}
@@ -82,7 +82,7 @@ const UserPageEdit = () => {
                             </h3>
                             <div className="mb-2 text-blueGray-600 mt-2">
                                 <i className="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i>
-                                <TextField
+                                <TextInputField
                                     label="Профессия"
                                     name="profession"
                                     value={user.profession}

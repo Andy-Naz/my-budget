@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react"
 import { validator } from "../../utils/validator"
-import TextField from "../common/form/TextField"
 import { useDispatch, useSelector } from "react-redux"
 import { getAuthErrors, getIsLoggedIn, logIn } from "../../store/users"
 import { Link, useNavigate } from "react-router-dom"
+import TextInputField from "../common/form/TextInputField"
 
 const LoginForm = () => {
     const navigate = useNavigate()
@@ -68,14 +68,14 @@ const LoginForm = () => {
                 Вход в аккаунт
             </h2>
             <form onSubmit={handleSubmit} className="space-y-6">
-                <TextField
+                <TextInputField
                     label="Электронная почта"
                     name="email"
                     value={data.email}
                     onChange={handleChange}
                     error={errors.email}
                 />
-                <TextField
+                <TextInputField
                     label="Пароль"
                     type="password"
                     name="password"

@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline"
 
-const TextInputField = () => {
+const TextInputField = ({ label, type, name, value, onChange, error, placeholder }) => {
     const [showPassword, setShowPassword] = useState(false)
 
     const handleChange = ({ target }) => {
@@ -44,6 +44,10 @@ const TextInputField = () => {
             </div>
         </div>
     )
+}
+
+TextInputField.default = {
+    type: "text",
 }
 
 export default TextInputField

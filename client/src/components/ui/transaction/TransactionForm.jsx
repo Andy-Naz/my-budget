@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { validator } from "../../../utils/validator"
 import SelectField from "../../common/form/SelectField"
-import TextField from "../../common/form/TextField"
 import TextAreaField from "../../common/form/TextAreaField"
 import { getAccounts, getAccountsLoadingStatus } from "../../../store/accounts"
 import { useDispatch, useSelector } from "react-redux"
@@ -9,6 +8,7 @@ import { getCategories, getCategoriesLoadingStatus } from "../../../store/catego
 import { createTransaction } from "../../../store/transactions"
 import { useNavigate } from "react-router-dom"
 import Loading from "../../common/loading/Loading"
+import TextInputField from "../../common/form/TextInputField"
 
 const TransactionForm = () => {
     const dispatch = useDispatch()
@@ -103,7 +103,7 @@ const TransactionForm = () => {
                                 <div className="px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                                     <dt className="text-sm font-medium leading-6 text-gray-900">Дата</dt>
                                     <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                                        <TextField
+                                        <TextInputField
                                             name="date"
                                             type="date"
                                             value={data.date}
@@ -141,7 +141,7 @@ const TransactionForm = () => {
                                 <div className="px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                                     <dt className="text-sm font-medium leading-6 text-gray-900">Сумма</dt>
                                     <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                                        <TextField
+                                        <TextInputField
                                             name="amount"
                                             type="number"
                                             value={data.amount}
