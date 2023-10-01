@@ -1,5 +1,5 @@
 import React from "react"
-import Table from "../../common/table/table"
+import Table from "../../common/table/Table"
 import DisplayAccountName from "./DisplayAccountName"
 import DisplayCategoryName from "./DisplayCategoryName"
 import DisplayTransactionDate from "./DisplayTransactionDate"
