@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { validator } from "../../../utils/validator"
 import SelectField from "../../common/form/SelectField"
-import TextField from "../../common/form/TextField"
 import TextAreaField from "../../common/form/TextAreaField"
 import { getAccounts, getAccountsLoadingStatus } from "../../../store/accounts"
 import { useDispatch, useSelector } from "react-redux"
@@ -10,6 +9,7 @@ import { getTransactions, getTransactionsLoadingStatus, updateTransaction } from
 import { useNavigate, useParams } from "react-router-dom"
 import { getIsLoggedIn } from "../../../store/users"
 import Loading from "../../common/loading/Loading"
+import TextField from "../../common/form/TextField"
 
 const TransactionEdit = () => {
     const { transactionId } = useParams()
