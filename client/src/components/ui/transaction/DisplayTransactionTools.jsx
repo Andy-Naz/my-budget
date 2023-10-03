@@ -4,7 +4,7 @@ import { PencilIcon, TrashIcon } from "@heroicons/react/24/outline"
 import { useSelector } from "react-redux"
 import { getIsLoggedIn } from "../../../store/users"
 
-const DisplayTransactionTools = ({ data }) => {
+const DisplayTransactionTools = ({ data, onRemove }) => {
     const isLoggedIn = useSelector(getIsLoggedIn())
 
     return (

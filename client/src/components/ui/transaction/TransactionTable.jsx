@@ -26,7 +26,7 @@ const TransactionTable = ({ transactions, onSort, selectedSort, onRemove, ...res
         amount: { path: "amount", name: "Сумма" },
         tools: {
             path: "tools",
-            component: (transaction) => <DisplayTransactionTools data={transaction} />,
+            component: (transaction) => <DisplayTransactionTools data={transaction} onRemove={onRemove} />,
         },
     }
 
