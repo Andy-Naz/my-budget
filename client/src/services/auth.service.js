@@ -2,7 +2,7 @@ import axios from "axios"
 import localStorageService from "./localStorage.service"
 
 export const httpAuth = axios.create({
-    baseURL: process.env.VITE_API_ENDPOINT + "/auth/",
+    baseURL: import.meta.env.VITE_API_ENDPOINT + "/auth/",
 })
 
 const authService = {

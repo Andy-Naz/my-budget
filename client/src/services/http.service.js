@@ -4,7 +4,7 @@ import localStorageService from "./localStorage.service"
 import authService from "./auth.service"
 
 const http = axios.create({
-    baseURL: process.env.VITE_API_ENDPOINT,
+    baseURL: import.meta.env.VITE_API_ENDPOINT,
 })
 
 http.interceptors.request.use(
