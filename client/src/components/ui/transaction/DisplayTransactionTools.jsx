@@ -11,7 +11,7 @@ const DisplayTransactionTools = ({ data, onRemove }) => {
         <div className="flex">
             <div>
                 <Link to={`/transaction/${data._id}`}>
-                    <PencilIcon title="Редактировать" className="w-4 hover:text-green-600 mr-2" />
+                    <PencilIcon title="Изменить" className="w-4 hover:text-green-600 mr-2" />
                 </Link>
             </div>
             {isLoggedIn && (

@@ -27,9 +27,9 @@ const Pagination = ({ itemsCount, pageSize, onPageChange, currentPage }) => {
 
     const setActiveClass = (pageNumber) => {
         if (pageNumber === currentPage) {
-            return "relative z-10 inline-flex items-center bg-indigo-600 px-3 py-1 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            return "relative z-10 inline-flex items-center justify-center bg-indigo-600 px-3 py-1 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-10"
         }
-        return "relative inline-flex items-center px-3 py-1 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
+        return "relative inline-flex items-center justify-center  px-3 py-1 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 w-10"
     }
     return (
         <>
