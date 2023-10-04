@@ -1,11 +1,10 @@
 import axios from "axios"
 import { toast } from "react-toastify"
-import configFile from "../config.json"
 import localStorageService from "./localStorage.service"
 import authService from "./auth.service"
 
 const http = axios.create({
-    baseURL: configFile.apiEndpoint,
+    baseURL: process.env.VITE_API_ENDPOINT,
 })
 
 http.interceptors.request.use(
