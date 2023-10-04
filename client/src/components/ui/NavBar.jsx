@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { useSelector } from "react-redux"
-import { Link } from "react-router-dom"
+import { NavLink, Link } from "react-router-dom"
 import { getIsLoggedIn } from "../../store/users"
 import NavProfile from "./NavProfile"
 import { Disclosure } from "@headlessui/react"
@@ -9,27 +9,13 @@ import Logo from "../../assets/images/logo.png"
 import TransactionAddButton from "./transaction/TransactionAddButton"
 
 const navigationList = [
-    { name: "Дашборд", to: "/", current: true },
-    { name: "Транзакции", to: "history", current: false },
+    { name: "Дашборд", to: "/" },
+    { name: "Транзакции", to: "history" },
 ]
 
 const NavBar = () => {
     const isLoggedIn = useSelector(getIsLoggedIn())
     const [navigation, setNavigation] = useState(navigationList)
-
-    const setMarkNavigation = (name) => {
-        const newNavigation = navigation.map((nav) => {
-            if (nav.name === name) {
-                return { ...nav, current: true }
-            }
-            return { ...nav, current: false }
-        })
-        setNavigation(newNavigation)
-    }
-
-    function classNames(...classes) {
-        return classes.filter(Boolean).join(" ")
-    }
 
     return (
         <Disclosure as="nav" className="bg-gray-800">
@@ -55,20 +41,17 @@ const NavBar = () => {
                                 <div className="hidden sm:ml-6 sm:block">
                                     <div className="flex space-x-4">
                                         {navigation.map((item) => (
-                                            <Link
+                                            <NavLink
                                                 key={item.name}
                                                 to={item.to}
-                                                className={classNames(
-                                                    item.current
-                                                        ? "bg-gray-900 text-white"
-                                                        : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                                                    "rounded-md px-3 py-2 text-sm font-medium"
-                                                )}
-                                                onClick={() => setMarkNavigation(item.name)}
-                                                aria-current={item.current ? "page" : undefined}
+                                                className={({ isActive }) =>
+                                                    isActive
+                                                        ? "bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
+                                                        : "text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                                                }
                                             >
                                                 {item.name}
-                                            </Link>
+                                            </NavLink>
                                         ))}
                                     </div>
                                 </div>
@@ -95,19 +78,17 @@ const NavBar = () => {
                     <Disclosure.Panel className="sm:hidden">
                         <div className="space-y-1 px-2 pb-3 pt-2">
                             {navigation.map((item) => (
-                                <Link key={item.name} to={item.to}>
+                                <NavLink key={item.name} to={item.to}>
                                     <Disclosure.Button
-                                        className={classNames(
-                                            item.current
-                                                ? "bg-gray-900 text-white"
-                                                : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                                            "block rounded-md px-3 py-2 text-base font-medium"
-                                        )}
-                                        aria-current={item.current ? "page" : undefined}
+                                        className={({ isActive }) =>
+                                            isActive
+                                                ? "bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
+                                                : "text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                                        }
                                     >
                                         {item.name}
                                     </Disclosure.Button>
-                                </Link>
+                                </NavLink>
                             ))}
                         </div>
                     </Disclosure.Panel>

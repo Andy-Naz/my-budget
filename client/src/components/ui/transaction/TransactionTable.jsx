@@ -8,7 +8,7 @@ import DisplayTransactionTools from "./DisplayTransactionTools"
 const TransactionTable = ({ transactions, onSort, selectedSort, onRemove, ...rest }) => {
     const columns = {
         date: {
-            path: "created_at",
+            path: "date",
             name: "Дата",
             component: (transaction) => <DisplayTransactionDate data={transaction} />,
         },
@@ -25,7 +25,6 @@ const TransactionTable = ({ transactions, onSort, selectedSort, onRemove, ...res
         comment: { path: "comment", name: "Комментарий" },
         amount: { path: "amount", name: "Сумма" },
         tools: {
-            path: "tools",
             component: (transaction) => <DisplayTransactionTools data={transaction} onRemove={onRemove} />,
         },
     }
