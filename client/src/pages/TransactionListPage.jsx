@@ -10,6 +10,8 @@ import { getCategories, getCategoriesLoadingStatus } from "../store/categories"
 import { getTransactions, removeTransaction } from "../store/transactions"
 import SelectField from "../components/common/form/SelectField"
 import Loading from "../components/common/loading/Loading"
+import { FunnelIcon } from "@heroicons/react/24/outline"
+import { Popover, PopoverHandler, PopoverContent } from "@material-tailwind/react"
 
 const TransactionsListPage = () => {
     const dispatch = useDispatch()
@@ -120,9 +122,9 @@ const TransactionsListPage = () => {
                     </div>
                     <div className="flex flex-col w-full lg:w-5/6 px-2">
                         <div className="flex md:flex-row flex-col justify-between">
-                            <div className="flex flex-row justify-start md:w-5/12 lg:w-4/12 w-full mt-2">
-                                <div className="flex items-center justify-center">
-                                    <p className="mr-4 align-middle">Показать</p>
+                            <div className="flex flex-row justify-start items-center md:w-5/12 lg:w-4/12 w-full mt-2">
+                                <div className="mr-4 sm:pl-12">
+                                    <p className="align-middle">Показать</p>
                                 </div>
                                 <div className="-mt-2">
                                     <SelectField
@@ -132,8 +134,35 @@ const TransactionsListPage = () => {
                                         value={data.rows}
                                     />
                                 </div>
+                                <div className="flex sm:hidden">
+                                    <div className="mx-4">
+                                        <p className="align-middle">Фильтры</p>
+                                    </div>
+                                    <Popover placement="bottom">
+                                        <PopoverHandler>
+                                            <div>
+                                                <FunnelIcon
+                                                    role="button"
+                                                    title="Фильтры"
+                                                    className="w-6 hover:text-indigo-500"
+                                                />
+                                            </div>
+                                        </PopoverHandler>
+                                        <PopoverContent>
+                                            {!accountsLoading && !categoriesLoading && (
+                                                <TransactionFilter
+                                                    accounts={accounts}
+                                                    categories={categories}
+                                                    valueProperty={"_id"}
+                                                    contentProperty={"name"}
+                                                    onFilter={handleFilter}
+                                                />
+                                            )}
+                                        </PopoverContent>
+                                    </Popover>
+                                </div>
                             </div>
-                            <div className="flex flex-row justify-end md:w-5/12 lg:w-4/12 w-full mt-2">
+                            <div className="flex flex-row justify-end md:w-5/12 lg:w-4/12 w-full mt-2 md:pl-0 sm:pl-12">
                                 <div className="flex items-center justify-center">
                                     <p className="mr-4 align-middle">Поиск</p>
                                 </div>
